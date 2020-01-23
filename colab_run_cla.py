@@ -7,6 +7,7 @@ from absl import flags
 import os
 import sys
 import csv
+import random
 import collections
 import numpy as np
 import time
@@ -320,34 +321,46 @@ class ImdbProcessor(DataProcessor):
     return examples
 
 class ImdbRegressionClassProcessor(DataProcessor):
+  def __init__(self):
+    self.examples = []
+    self.train = []
+    self.test = []
+    self.counts = {}
+
   def get_labels(self):
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   def get_train_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "train"))
+    self._create_examples(data_dir)
+    random.shuffle(self.examples)
+    print(self.counts)
+    self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    return self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
 
   def get_dev_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "test"))
+    assert(len(self.train) != 0)
+    assert(not set(self.test).intersection(set(self.train)))
+    self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    return self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
 
   def _create_examples(self, data_dir):
     examples = []
-    counts = {}
-    for label in ["neg", "pos", "neu"]:
-      cur_dir = os.path.join(data_dir, label)
+    for label in [""]:
+      cur_dir = data_dir
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
         l = float(match.group()[1:])
-        if l in counts:
-          counts[l] = counts[l] + 1
+        if l in self.counts:
+          self.counts[l] = self.counts[l] + 1
         else:
-          counts[l] = 1
+          self.counts[l] = 1
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
-        print(counts)
+    self.examples = examples
     return examples
 
 class ImdbThreeClassProcessor(DataProcessor):
@@ -744,9 +757,9 @@ def main(_):
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
   run_config = tf.contrib.tpu.RunConfig(
       cluster=tpu_cluster_resolver,
-      model_dir='gs://xlnet_dell/models/reg',
+      model_dir=FLAGS.model_dir,
       save_checkpoints_steps=2000,
-      keep_checkpoint_max=2,
+      keep_checkpoint_max=10,
       tpu_config=tf.contrib.tpu.TPUConfig(
           iterations_per_loop=1000,
           num_shards=8,
