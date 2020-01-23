@@ -332,7 +332,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
   def _create_examples(self, data_dir):
     examples = []
     counts = {}
-    for label in ["neg", "pos"]:
+    for label in ["neg", "pos", "neu"]:
       cur_dir = os.path.join(data_dir, label)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
@@ -738,6 +738,7 @@ def main(_):
   def tokenize_fn(text):
     text = preprocess_text(text, lower=FLAGS.uncased)
     return encode_ids(sp, text)
+  
   tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
   tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu_address)
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
