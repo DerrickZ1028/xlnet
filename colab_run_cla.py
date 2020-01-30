@@ -301,23 +301,38 @@ class ImdbProcessor(DataProcessor):
     return ["neg", "pos"]
 
   def get_train_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "train"))
+        self._create_examples(data_dir)
+    random.shuffle(self.examples)
+    print(self.counts)
+    self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    return self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
 
   def get_dev_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "test"))
+        assert(len(self.train) != 0)
+    assert(not set(self.test).intersection(set(self.train)))
+    self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    return self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
 
   def _create_examples(self, data_dir):
-    examples = []
-    for label in ["neg", "pos"]:
-      cur_dir = os.path.join(data_dir, label)
+        examples = []
+    for label in [""]:
+      cur_dir = data_dir
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
-
+        match = re.search(r'_\d', filename)
+        l = float(match.group()[1:])
+        if l >= 6:
+          l = "pos"
+        elif l <=4:
+          l = "neg"
+        else:
+          continue
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=label))
+            guid="unused_id", text_a=text, text_b=None, label=l))
+    self.examples = examples
     return examples
 
 class ImdbRegressionClassProcessor(DataProcessor):
