@@ -301,14 +301,14 @@ class ImdbProcessor(DataProcessor):
     return ["neg", "pos"]
 
   def get_train_examples(self, data_dir):
-        self._create_examples(data_dir)
+    self._create_examples(data_dir)
     random.shuffle(self.examples)
     print(self.counts)
     self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
     return self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
 
   def get_dev_examples(self, data_dir):
-        assert(len(self.train) != 0)
+    assert(len(self.train) != 0)
     assert(not set(self.test).intersection(set(self.train)))
     self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
     return self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
