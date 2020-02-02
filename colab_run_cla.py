@@ -33,6 +33,12 @@ from prepro_utils import preprocess_text, encode_ids
 # Model
 flags.DEFINE_string("model_config_path", default=None,
       help="Model config path.")
+flags.DEFINE_bool("five_fold_mode", default=False,
+      help="Five fold mode.")
+flags.DEFINE_int("test_fold", default=0,
+      help="Which fold is test fold.")
+flags.DEFINE_int("model_config_path", default=None,
+      help="Model config path.")
 flags.DEFINE_float("dropout", default=0.1,
       help="Dropout rate.")
 flags.DEFINE_float("dropatt", default=0.1,
@@ -347,21 +353,29 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    random.shuffle(self.examples)
-    print(self.counts)
-    self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
-    return self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    
+    #print(self.counts)
+    if Flags.five_fold_mode:
+      index = Flags.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      random.shuffle(self.examples)
+      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    return self.train
 
   def get_dev_examples(self, data_dir):
     assert(len(self.train) != 0)
     assert(not set(self.test).intersection(set(self.train)))
-    self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    return self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    if not Flags.five_fold_mode:
+      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    assert(len(self.test) != 0)
+    return self.test
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in [""]:
-      cur_dir = data_dir
+    for label in ["0","1","2","3","4"]:
+      cur_dir = data_dir + '/' + label + '/'
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
