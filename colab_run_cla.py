@@ -325,12 +325,17 @@ class ImdbProcessor(DataProcessor):
     return self.train
 
   def get_dev_examples(self, data_dir):
-    assert(len(self.train) != 0)
-    assert(not set(self.test).intersection(set(self.train)))
-    if not FLAGS.five_fold_mode:
+    self._create_examples(data_dir)
+    #print(self.counts)
+    if FLAGS.five_fold_mode:
+      index = FLAGS.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      #random.shuffle(self.examples)
       self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    assert(len(self.test) != 0)
     return self.test
+
 
   def _create_examples(self, data_dir):
     examples = []
@@ -389,12 +394,17 @@ class ImdbRegressionClassProcessor(DataProcessor):
     return self.train
 
   def get_dev_examples(self, data_dir):
-    assert(len(self.train) != 0)
-    assert(not set(self.test).intersection(set(self.train)))
-    if not FLAGS.five_fold_mode:
+    self._create_examples(data_dir)
+    #print(self.counts)
+    if FLAGS.five_fold_mode:
+      index = FLAGS.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      #random.shuffle(self.examples)
       self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    assert(len(self.test) != 0)
     return self.test
+
 
   def _create_examples(self, data_dir):
     examples = []
@@ -451,11 +461,15 @@ class ImdbThreeClassProcessor(DataProcessor):
     return self.train
 
   def get_dev_examples(self, data_dir):
-    assert(len(self.train) != 0)
-    assert(not set(self.test).intersection(set(self.train)))
-    if not FLAGS.five_fold_mode:
+    self._create_examples(data_dir)
+    #print(self.counts)
+    if FLAGS.five_fold_mode:
+      index = FLAGS.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      #random.shuffle(self.examples)
       self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    assert(len(self.test) != 0)
     return self.test
 
   def _create_examples(self, data_dir):
