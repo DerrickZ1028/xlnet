@@ -335,7 +335,7 @@ class ImdbProcessor(DataProcessor):
   def _create_examples(self, data_dir):
     examples = []
     for label in ["0","1","2","3","4"]:
-      cur_dir = data_dir
+      cur_dir = data_dir + '/' + label + '/'
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
