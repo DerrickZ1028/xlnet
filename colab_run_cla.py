@@ -306,6 +306,8 @@ class ImdbProcessor(DataProcessor):
     self.train = []
     self.test = []
     self.counts = {}
+    self.test_count = {}
+    self.train_count = {}
 
   def get_labels(self):
     return ["neg", "pos"]
@@ -344,7 +346,7 @@ class ImdbProcessor(DataProcessor):
           l = "neg"
         else:
           continue
-        if int(label) = FLAGS.test_fold:
+        if int(label) == FLAGS.test_fold:
           if l in self.test_count:
             self.test_count[l] = self.test_count[l] + 1
           else:
@@ -368,6 +370,8 @@ class ImdbRegressionClassProcessor(DataProcessor):
     self.train = []
     self.test = []
     self.counts = {}
+    self.test_count = {}
+    self.train_count = {}
 
   def get_labels(self):
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -404,7 +408,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
           self.counts[l] = self.counts[l] + 1
         else:
           self.counts[l] = 1
-        if int(label) = FLAGS.test_fold:
+        if int(label) == FLAGS.test_fold:
           if l in self.test_count:
             self.test_count[l] = self.test_count[l] + 1
           else:
@@ -469,7 +473,7 @@ class ImdbThreeClassProcessor(DataProcessor):
         else:
           l = "neu"
         path = os.path.join(cur_dir, filename)
-        if int(label) = FLAGS.test_fold:
+        if int(label) == FLAGS.test_fold:
           if l in self.test_count:
             self.test_count[l] = self.test_count[l] + 1
           else:
