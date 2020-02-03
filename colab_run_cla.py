@@ -306,16 +306,23 @@ class ImdbProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    random.shuffle(self.examples)
-    print(self.counts)
-    self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
-    return self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    #print(self.counts)
+    if FLAGS.five_fold_mode:
+      index = FLAGS.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      random.shuffle(self.examples)
+      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    return self.train
 
   def get_dev_examples(self, data_dir):
     assert(len(self.train) != 0)
     assert(not set(self.test).intersection(set(self.train)))
-    self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    return self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    if not FLAGS.five_fold_mode:
+      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    assert(len(self.test) != 0)
+    return self.test
 
   def _create_examples(self, data_dir):
     examples = []
@@ -351,7 +358,6 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    
     #print(self.counts)
     if FLAGS.five_fold_mode:
       index = FLAGS.test_fold
@@ -392,21 +398,42 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
 class ImdbThreeClassProcessor(DataProcessor):
   def get_labels(self):
-    return ["neg", "pos"]
+    return ["neg", "pos", "neu"]
 
   def get_train_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "train"))
+    self._create_examples(data_dir)
+    #print(self.counts)
+    if FLAGS.five_fold_mode:
+      index = FLAGS.test_fold
+      self.test = self.examples[index * 1000 : (index+1) * 1000]
+      self.train = list(set(self.examples) - set(self.test))
+    else:
+      random.shuffle(self.examples)
+      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
+    return self.train
 
   def get_dev_examples(self, data_dir):
-    return self._create_examples(os.path.join(data_dir, "test"))
+    assert(len(self.train) != 0)
+    assert(not set(self.test).intersection(set(self.train)))
+    if not FLAGS.five_fold_mode:
+      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    assert(len(self.test) != 0)
+    return self.test
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["neg", "pos"]:
+    for label in ["0", "1", "2", "3", "4"]:
       cur_dir = os.path.join(data_dir, label)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
-
+        match = re.search(r'_\d', filename)
+        l = float(match.group()[1:])
+        if l >= 6:
+          l = "pos"
+        elif l <=4:
+          l = "neg"
+        else:
+          l = "neu"
         path = os.path.join(cur_dir, filename)
 
         with tf.gfile.Open(path) as f:
