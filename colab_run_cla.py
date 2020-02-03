@@ -444,7 +444,6 @@ class ImdbThreeClassProcessor(DataProcessor):
       index = FLAGS.test_fold
       self.test = self.examples[index * 1000 : (index+1) * 1000]
       self.train = list(set(self.examples) - set(self.test))
-      self.count()
     else:
       random.shuffle(self.examples)
       self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
