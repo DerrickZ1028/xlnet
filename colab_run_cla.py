@@ -400,6 +400,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
     examples = []
     for label in ["0","1","2","3","4"]:
       cur_dir = data_dir + '/' + label + '/'
+      print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
@@ -461,14 +462,18 @@ class ImdbThreeClassProcessor(DataProcessor):
     examples = []
     for label in ["0", "1", "2", "3", "4"]:
       cur_dir = data_dir + '/' + label + '/'
+      #print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
         l = float(match.group()[1:])
+        print(l)
         if l >= 6:
+         # print("pos")
           l = "pos"
-        elif l <=4:
+        elif l <= 4:
           l = "neg"
+         # print("neg")
         else:
           l = "neu"
         path = os.path.join(cur_dir, filename)
@@ -482,10 +487,12 @@ class ImdbThreeClassProcessor(DataProcessor):
         #     self.train_count[l] = self.train_count[l] + 1
         #   else:
         #     self.test_count[l] = 0
+        #print(l)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=label))
+            guid="unused_id", text_a=text, text_b=None, label=l))
+        self.examples = examples
     return examples
 
 
