@@ -301,6 +301,12 @@ class Yelp5Processor(DataProcessor):
 
 
 class ImdbProcessor(DataProcessor):
+  def __init__(self):
+    self.examples = []
+    self.train = []
+    self.test = []
+    self.counts = {}
+
   def get_labels(self):
     return ["neg", "pos"]
 
@@ -338,6 +344,16 @@ class ImdbProcessor(DataProcessor):
           l = "neg"
         else:
           continue
+        if int(label) = FLAGS.test_fold:
+          if l in self.test_count:
+            self.test_count[l] = self.test_count[l] + 1
+          else:
+            self.test_count[l] = 0
+        else:
+          if l in self.train_count:
+            self.train_count[l] = self.train_count[l] + 1
+          else:
+            self.test_count[l] = 0
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
@@ -388,6 +404,16 @@ class ImdbRegressionClassProcessor(DataProcessor):
           self.counts[l] = self.counts[l] + 1
         else:
           self.counts[l] = 1
+        if int(label) = FLAGS.test_fold:
+          if l in self.test_count:
+            self.test_count[l] = self.test_count[l] + 1
+          else:
+            self.test_count[l] = 0
+        else:
+          if l in self.train_count:
+            self.train_count[l] = self.train_count[l] + 1
+          else:
+            self.test_count[l] = 0
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
@@ -397,6 +423,13 @@ class ImdbRegressionClassProcessor(DataProcessor):
     return examples
 
 class ImdbThreeClassProcessor(DataProcessor):
+  def __init__(self):
+    self.examples = []
+    self.train = []
+    self.test = []
+    self.train_counts = {}
+    self.test_count = {}
+
   def get_labels(self):
     return ["neg", "pos", "neu"]
 
@@ -407,6 +440,7 @@ class ImdbThreeClassProcessor(DataProcessor):
       index = FLAGS.test_fold
       self.test = self.examples[index * 1000 : (index+1) * 1000]
       self.train = list(set(self.examples) - set(self.test))
+      self.count()
     else:
       random.shuffle(self.examples)
       self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
@@ -435,7 +469,16 @@ class ImdbThreeClassProcessor(DataProcessor):
         else:
           l = "neu"
         path = os.path.join(cur_dir, filename)
-
+        if int(label) = FLAGS.test_fold:
+          if l in self.test_count:
+            self.test_count[l] = self.test_count[l] + 1
+          else:
+            self.test_count[l] = 0
+        else:
+          if l in self.train_count:
+            self.train_count[l] = self.train_count[l] + 1
+          else:
+            self.test_count[l] = 0
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
