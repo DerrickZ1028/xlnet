@@ -140,6 +140,7 @@ flags.DEFINE_bool("uncased", default=False,
       help="Use uncased.")
 flags.DEFINE_string("cls_scope", default=None,
       help="Classifier layer scope.")
+      
 flags.DEFINE_bool("is_regression", default=False,
       help="Whether it's a regression task.")
 
@@ -410,25 +411,12 @@ class ImdbRegressionClassProcessor(DataProcessor):
     examples = []
     for label in ["0","1","2","3","4"]:
       cur_dir = data_dir + '/' + label + '/'
+      print(label)
       print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
         l = float(match.group()[1:])
-        # if l in self.counts:
-        #   self.counts[l] = self.counts[l] + 1
-        # else:
-        #   self.counts[l] = 1
-        # if int(label) == FLAGS.test_fold:
-        #   if l in self.test_count:
-        #     self.test_count[l] = self.test_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
-        # else:
-        #   if l in self.train_count:
-        #     self.train_count[l] = self.train_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
