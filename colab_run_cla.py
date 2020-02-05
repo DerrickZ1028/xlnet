@@ -458,6 +458,7 @@ class ImdbThreeClassProcessor(DataProcessor):
     else:
       #random.shuffle(self.examples)
       self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    #print(self.test)
     return self.test
 
   def _create_examples(self, data_dir):
@@ -469,7 +470,7 @@ class ImdbThreeClassProcessor(DataProcessor):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
         l = float(match.group()[1:])
-        print(l)
+        #print(l)
         if l >= 6:
          # print("pos")
           l = "pos"
@@ -479,19 +480,9 @@ class ImdbThreeClassProcessor(DataProcessor):
         else:
           l = "neu"
         path = os.path.join(cur_dir, filename)
-        # if int(label) == FLAGS.test_fold:
-        #   if l in self.test_count:
-        #     self.test_count[l] = self.test_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
-        # else:
-        #   if l in self.train_count:
-        #     self.train_count[l] = self.train_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
-        #print(l)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
+        #print('{} : {}'.format(text, l))
         examples.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
         self.examples = examples
@@ -574,7 +565,7 @@ def file_based_convert_examples_to_features(
     examples, label_list, max_seq_length, tokenize_fn, output_file,
     num_passes=1):
   """Convert a set of `InputExample`s to a TFRecord file."""
-
+  print('!' * 10000)
   # do not create duplicated records
   if tf.gfile.Exists(output_file) and not FLAGS.overwrite_data:
     tf.logging.info("Do not overwrite tfrecord {} exists.".format(output_file))
@@ -586,7 +577,9 @@ def file_based_convert_examples_to_features(
 
   if num_passes > 1:
     examples *= num_passes
-
+  task_name = 'imdb_t'
+  fout = tf.gfile.Open(os.path.join("predict","orig_{}.tsv".format(
+        task_name)), "w")
   for (ex_index, example) in enumerate(examples):
     if ex_index % 10000 == 0:
       tf.logging.info("Writing example {} of {}".format(ex_index,
@@ -615,8 +608,12 @@ def file_based_convert_examples_to_features(
         [int(feature.is_real_example)])
 
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
+    print("*" * 100)
+    fout.write("{}\t{}\n".format(example.text_a, example.label))
+    print("{}\t{}\n}".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
+  fout.close()
 
 
 def file_based_input_fn_builder(input_file, seq_length, is_training,
@@ -1001,7 +998,9 @@ def main(_):
     eval_file_base = "{}.len-{}.{}.predict.tf_record".format(
         spm_basename, FLAGS.max_seq_length, FLAGS.eval_split)
     eval_file = os.path.join(FLAGS.output_dir, eval_file_base)
-
+    # for example in eval_examples:
+    #       print('{}:{}'.format(example.text_a, example.label))
+    print('*' * 10000)
     file_based_convert_examples_to_features(
         eval_examples, label_list, FLAGS.max_seq_length, tokenize_fn,
         eval_file)
@@ -1016,11 +1015,15 @@ def main(_):
     with tf.gfile.Open(os.path.join(predict_dir, "{}.tsv".format(
         task_name)), "w") as fout:
       fout.write("index\tprediction\n")
-
+      print(enumerate(estimator.predict(
+          input_fn=pred_input_fn,
+          yield_single_examples=True,
+          checkpoint_path=FLAGS.predict_ckpt)))
       for pred_cnt, result in enumerate(estimator.predict(
           input_fn=pred_input_fn,
           yield_single_examples=True,
           checkpoint_path=FLAGS.predict_ckpt)):
+        print(result)
         if pred_cnt % 1000 == 0:
           tf.logging.info("Predicting submission for example: {}".format(
               pred_cnt))
