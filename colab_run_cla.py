@@ -415,8 +415,8 @@ class ImdbRegressionClassProcessor(DataProcessor):
       print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
-        match = re.search(r'_\d', filename)
-        l = float(match.group()[1:])
+        match = re.findall(r"(?<![a-zA-Z:])[-+]?\d*\.?\d+", filename)
+        l = float(match[1])
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
@@ -577,9 +577,8 @@ def file_based_convert_examples_to_features(
 
   if num_passes > 1:
     examples *= num_passes
-  task_name = 'imdb_t'
-  fout = tf.gfile.Open(os.path.join("predict","orig_{}.tsv".format(
-        task_name)), "w")
+  task_name = 'imdb_reg'
+  fout = tf.gfile.Open(os.path.join("./predict","orig.tsv"), "w")
   for (ex_index, example) in enumerate(examples):
     if ex_index % 10000 == 0:
       tf.logging.info("Writing example {} of {}".format(ex_index,
@@ -610,7 +609,7 @@ def file_based_convert_examples_to_features(
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
     print("*" * 100)
     fout.write("{}\t{}\n".format(example.text_a, example.label))
-    print("{}\t{}\n}".format(example.text_a, example.label))
+    print("{}\t{}\n".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
   fout.close()
