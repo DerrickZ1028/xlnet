@@ -417,6 +417,10 @@ class ImdbRegressionClassProcessor(DataProcessor):
         if not filename.endswith("txt"): continue
         match = re.findall(r"(?<![a-zA-Z:])[-+]?\d*\.?\d+", filename)
         l = float(match[1])
+        if l <= 2:
+          l = 2
+        elif l >= 8:
+          l = 8
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
