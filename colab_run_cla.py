@@ -616,7 +616,7 @@ def file_based_convert_examples_to_features(
     print("{}\t{}\n".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
-  fout.close()
+  #fout.close()
 
 
 def file_based_input_fn_builder(input_file, seq_length, is_training,
