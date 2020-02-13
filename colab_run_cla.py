@@ -582,7 +582,7 @@ def file_based_convert_examples_to_features(
   if num_passes > 1:
     examples *= num_passes
   task_name = 'imdb_reg'
-  fout = tf.gfile.Open(os.path.join("./predict","orig.tsv"), "w")
+  #fout = tf.gfile.Open(os.path.join("./predict","orig.tsv"), "w")
   for (ex_index, example) in enumerate(examples):
     if ex_index % 10000 == 0:
       tf.logging.info("Writing example {} of {}".format(ex_index,
@@ -612,7 +612,7 @@ def file_based_convert_examples_to_features(
 
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
     print("*" * 100)
-    fout.write("{}\t{}\n".format(example.text_a, example.label))
+    #fout.write("{}\t{}\n".format(example.text_a, example.label))
     print("{}\t{}\n".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
