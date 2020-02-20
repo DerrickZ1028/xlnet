@@ -395,8 +395,10 @@ class ImdbRegressionClassProcessor(DataProcessor):
     return self.train
 
   def get_dev_examples(self, data_dir):
-    self._create_examples(data_dir)
+    #self._create_examples(data_dir)
     #print(self.counts)
+    if self.test:
+      return self.test
     if FLAGS.five_fold_mode:
       index = FLAGS.test_fold
       self.test = self.examples[index * 1000 : (index+1) * 1000]
@@ -612,9 +614,9 @@ def file_based_convert_examples_to_features(
         [int(feature.is_real_example)])
 
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
-    print("*" * 100)
+    #print("*" * 100)
     #fout.write("{}\t{}\n".format(example.text_a, example.label))
-    print("{}\t{}\n".format(example.text_a, example.label))
+   #w print("{}\t{}\n".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
   #fout.close()
