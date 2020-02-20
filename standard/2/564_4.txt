@@ -1,0 +1,1 @@
+The problem I ran into right off the bat was when I plugged in a USB hub with a pass through PD charger for the laptop.When I did this there was no longer enough power from the power supply to charge the laptop while using it, in fact windows will send a warning message about this.

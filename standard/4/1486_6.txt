@@ -1,0 +1,1 @@
+Go into your task manager and disable it's load on startup and you should be fine after a reboot.

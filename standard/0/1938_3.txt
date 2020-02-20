@@ -1,0 +1,1 @@
+Pair that with bi-monthly firmware updates that I suspect are the cause of many bugs (machine has been failing to resume from sleep off and on for over 3 months) and you basically ruin the pros.

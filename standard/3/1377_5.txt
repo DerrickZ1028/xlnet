@@ -1,0 +1,1 @@
+The left side right side for right click tripped me up compared to other units that check for one or two fingers to know if you're right-clicking and this method of right-clicking has taken some adjustment time.

@@ -1,0 +1,1 @@
+This permanently clocks your processor down to 2.2 Ghz - which for me, was way more than enough performance.

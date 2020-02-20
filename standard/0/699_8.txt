@@ -1,0 +1,1 @@
+Please give the sentiment aspect(s); write "None" if there is none and use ";" to separate if there are two or more:  

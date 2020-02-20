@@ -1,0 +1,1 @@
+Occasionally when disconnecting from my USB-C docking station, it梯s frozen and not been able to restart.

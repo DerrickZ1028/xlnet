@@ -1,0 +1,1 @@
+There aren't very many USB ports on this laptop, so chances are you will probably want a USB bus to handle all of the devices you can plug in at any one time.

@@ -1,0 +1,1 @@
+I was able to achieve 50frames per second on aliens isolation but with 1080p resolution and medium settings.

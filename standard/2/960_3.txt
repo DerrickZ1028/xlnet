@@ -1,0 +1,1 @@
+Graphic cards freezes on high load.

@@ -1,0 +1,1 @@
+Another tip is to make adjustments in the Nvidia control panel to only allow certain apps to use the discrete card, which reduces heat.

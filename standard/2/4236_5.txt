@@ -1,0 +1,1 @@
+The architecture of the operating system is built on 64-bit with two (2) memory slots.

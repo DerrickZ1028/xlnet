@@ -1,0 +1,1 @@
+And now recently the mouse and keyboard have been doing this freezing behavior where the keyboard and mouse become unresponsive for a short amount of time (3-5 seconds) and then resume function.

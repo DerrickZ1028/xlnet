@@ -1,0 +1,1 @@
+This vibration seems to be mechanical more than due to amplifier clipping - since it happens at even relatively low volumes on some pieces (at around 40%).

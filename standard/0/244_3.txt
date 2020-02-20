@@ -1,0 +1,1 @@
+I assumed usbc charging meant bypassing the transformer and wall plug, I was wrong.

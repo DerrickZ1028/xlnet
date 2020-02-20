@@ -1,0 +1,1 @@
+As I'll describe below, many of the problems faced by the developer edition with Ubuntu were faced with other linux based OS's and even Windows.

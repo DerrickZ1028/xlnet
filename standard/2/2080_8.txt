@@ -1,0 +1,1 @@
+Imports of RAW files from a Sony a7riii are very fast and that is using a 1-1 preview which generally slows down the process.

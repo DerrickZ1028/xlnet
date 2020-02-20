@@ -1,0 +1,1 @@
+I tried Disabling GPU acceleration on Chrome, eventually got the GNOME memory bug fix, tested disabling TLP to see if it was causing the problems, and a few other things but none worked.

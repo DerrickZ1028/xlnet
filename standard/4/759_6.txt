@@ -1,0 +1,1 @@
+Default battery profile; you can do much better if you put it in battery saver mode which disables battery sucking background tasks.

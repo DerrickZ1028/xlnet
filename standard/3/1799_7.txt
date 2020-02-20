@@ -1,0 +1,1 @@
+Combination of power management, undervolting, and thermal paste greatly reduced fan noise almost completely from everyday tasks (office, web, emails, Netflix, etc.)  It will come on very minimally (2 of 10 loudness scale) when using Thunderbolt 3 port to connect dock or multiple monitors.

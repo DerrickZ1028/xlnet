@@ -409,7 +409,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0","1","2","3","4","aug"]:
+    for label in ["0","1","2","3","4"]:
       cur_dir = data_dir + '/' + label + '/'
       print(label)
       print(cur_dir)

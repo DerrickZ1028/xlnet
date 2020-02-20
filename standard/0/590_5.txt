@@ -1,0 +1,1 @@
+It also includes a Mobile Connect utility for linking phones via Bluetooth or Wi-Fi Direct.

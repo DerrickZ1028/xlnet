@@ -1,0 +1,1 @@
+First big negative I ran into is the nVidia 1050 TI chip is special, and not in a very good way.

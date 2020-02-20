@@ -1,0 +1,1 @@
+It does read fingerprint but it's not a separate button, it's the on/off button. Just rest your finger on it, don't press it.

@@ -1,0 +1,1 @@
+I set up finger print logon for myself and my wife and it has been rock solid when switching between user profiles.

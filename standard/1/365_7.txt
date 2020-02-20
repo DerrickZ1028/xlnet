@@ -1,0 +1,1 @@
+My only concern was that it works well for Windows Hello, and it has worked every bit as well as the one on the HP Spectre did.

@@ -1,0 +1,1 @@
+The one thing that might surprise you is all inputs are usb-c, there are no usb3 or 2 inputs.

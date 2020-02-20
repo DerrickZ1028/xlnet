@@ -1,0 +1,1 @@
+LED light starts blinking 2 Amber flashes, then 1 white flash.

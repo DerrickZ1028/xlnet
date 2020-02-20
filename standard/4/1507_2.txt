@@ -1,0 +1,1 @@
+The audio engine has a bug that sometimes stop working and only produces cracking noises and white noise, apparently other people has this problem too and dell is not very good with the tech support.

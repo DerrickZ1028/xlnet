@@ -1,0 +1,1 @@
+Internals:Whiskey Lake is, at the time of writing, the fastest available mobile CPU from Intel.
