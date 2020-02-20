@@ -1,1 +1,0 @@
-I am running ubuntu in a virtual machine mainly to do bioinformatics.

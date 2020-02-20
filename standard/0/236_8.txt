@@ -1,1 +1,0 @@
-I run rather large Excel spreadsheets with big calculations and this machine handles the spreadsheets nicely.

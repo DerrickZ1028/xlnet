@@ -1,1 +1,0 @@
-After the reset, it constantly tried to "Automatic Repair" itself and suggested restarting the device.

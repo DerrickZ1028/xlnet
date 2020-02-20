@@ -1,1 +1,0 @@
-The CinemaStream feature, which tames your wireless channels so they will stream videos or music without buffering, seems to work well.

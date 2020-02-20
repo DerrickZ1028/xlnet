@@ -1,1 +1,0 @@
-Software support, productivity, in regards to battery life: I can have multiple applications opened all at once: Visual studio, with TeX works and chrome; or maybe MatLab and TeX works; or even RStudio with Adobe Reader Touch.

@@ -1,1 +1,0 @@
-Ports: There are two USB 3.1 type-A ports, and one USB 3.1 type-C port.

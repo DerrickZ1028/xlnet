@@ -1,1 +1,0 @@
-- With latest bios the fans STILL go turbo in tent mode - Poor speaker placement on the bottom so you can never hear anything (especially over fan noise if you fold it to tent mode) - Have to throttle the cpu %50 and run in "battery saver" mode to get the advertised battery life.

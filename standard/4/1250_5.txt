@@ -1,1 +1,0 @@
-We haven't tried it yet with multiple programs running, but I'll update this review if we encounter problems.

@@ -1,1 +1,0 @@
-You can also use Atom or visual studio code, both of which runs really well.

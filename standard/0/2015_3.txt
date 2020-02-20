@@ -1,1 +1,0 @@
-I tried disabling the Vega M drivers as some suggested - that didn't help.

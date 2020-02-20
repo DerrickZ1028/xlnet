@@ -1,1 +1,0 @@
-While you can upgrade from a 256gb ssd, you cannot do so on the memory as it is soldered onto the board.

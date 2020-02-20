@@ -1,1 +1,0 @@
-I run Elementary OS (a un Ubuntu Linux-based distro). It works pretty well, although from time to time, I have some issues and the computer becomes almost (but not totally) frozen and I've to hard-reset it.

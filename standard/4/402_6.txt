@@ -1,1 +1,0 @@
-The only issue that was fixed was the keyboard issue because the fresh install I used wiped Dell's custom keyboard configuration.

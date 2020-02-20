@@ -1,1 +1,0 @@
-Even though the fan stabilized after the updates other random problems occurred where the keyboard and mouse stopped working for about a minute before recovering 4 times, plugging in a mouse once caused a bluescreen, and several times Windows complained that it wasn't activated which suggest Dell has some minor tweaks that need to be done.

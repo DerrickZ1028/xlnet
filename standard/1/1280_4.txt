@@ -1,1 +1,0 @@
-However, you'll not be able to install drivers directly from nVidia.

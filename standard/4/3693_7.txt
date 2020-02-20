@@ -1,1 +1,0 @@
-The dedicated GPU is enough to give a little boost when hooked up to an external display or when doing light editing work.

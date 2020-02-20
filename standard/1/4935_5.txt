@@ -1,1 +1,0 @@
-Frame rates are very good for games (averaging around 50fps) but are lower if on battery of course.

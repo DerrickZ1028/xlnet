@@ -1,1 +1,0 @@
-My 3d graphics programs (C++/OpenGL/Cuda) that take advantage of the discrete graphics card (which the Surface lacks) run over twice as fast!

@@ -1,1 +1,0 @@
-My desktop Dell and old Lenovo laptop were getting 116 download speeds, but the new laptop was only getting 32 until I did a reset of the wi-fi in the settings menu.

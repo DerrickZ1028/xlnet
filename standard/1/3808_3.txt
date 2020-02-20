@@ -1,1 +1,0 @@
-It's limitations in the NTSC and AdobeRGB color spaces suggest that this would not be the best choice for photo editing.

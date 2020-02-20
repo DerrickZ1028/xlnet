@@ -1,1 +1,0 @@
-The 500 GB Intel Optane+ SSD has read/write speed about 500/575 MB/s.

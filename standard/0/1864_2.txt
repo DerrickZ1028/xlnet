@@ -1,1 +1,0 @@
-The computer crashed after installing some updates which failed, so I ran a system restore, which also failed.

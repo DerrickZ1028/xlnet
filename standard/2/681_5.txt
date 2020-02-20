@@ -1,1 +1,0 @@
-Using the USB Type C to Type A adapter, I connected a Schiit Modi 3 DAC to the XPS13 9380 and then fed the audio from the DAC to my studio sound system.

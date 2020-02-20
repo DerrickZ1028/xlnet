@@ -1,1 +1,0 @@
-And, it's fast access (Optane) means you aren't waiting as long for applications to launch.

@@ -1,1 +1,0 @@
-As far as battery length I set it up to continuously run a 1080P movie (24fps) with screen at 75% and speakers at 25% and it ran for a little over 5 hours straight before hitting 10% battery.

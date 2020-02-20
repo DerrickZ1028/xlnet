@@ -1,1 +1,0 @@
-Regarding performance: Once fully setup, boot time (cold to login) has been very speedy (less than 25sec).

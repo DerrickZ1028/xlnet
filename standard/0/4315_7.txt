@@ -1,1 +1,0 @@
-This includes the side numeric keypad that I didn't have on my 13" (and missed dearly).

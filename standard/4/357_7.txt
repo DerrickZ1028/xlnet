@@ -1,1 +1,0 @@
-It was a bit of a pain to get working right with the HP, but I was pleased that the Dell never even seemed to load drivers - I had no chimes of new hardware found or anything, the moment it was plugged in, I instantly had three screens going, and simply had to change them from mirroring to extending.

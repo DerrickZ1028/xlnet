@@ -1,1 +1,0 @@
-Only negative is the PgUp and PgDn keys being close to the arrow keys and are easy to hit accidentally when reaching for said arrows.

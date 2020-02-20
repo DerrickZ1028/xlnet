@@ -1,1 +1,0 @@
-I connected to a 4K TV using HDMI connection (directly connected to card) and was able to set resolution at 4096 x 2160 60 MHz resolution (and it looked great with no stuttering watching a movie or playing a game).

@@ -1,1 +1,0 @@
-It allows storage of much larger games without a prohibitively expensive SSD but comes with a tradeoff of some battery life.

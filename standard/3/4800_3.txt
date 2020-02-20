@@ -1,1 +1,0 @@
-I verified in the BIOS menu that the battery was healthy but not charging.

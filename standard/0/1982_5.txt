@@ -1,1 +1,0 @@
-I don't game (future goal is video rendering, processing), but have stress-tested machine to get the fans going (otherwise it stays quiet).

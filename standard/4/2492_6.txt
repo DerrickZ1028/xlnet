@@ -1,1 +1,0 @@
-It works fine for web browsing on low performance tho.

@@ -1,1 +1,0 @@
-The i7 CPU has 6 cores.

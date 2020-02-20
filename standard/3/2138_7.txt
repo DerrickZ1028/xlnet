@@ -1,1 +1,0 @@
-The cpu/gpu combo that's been implemented in this 2 in 1 with the G series processor seems to be pretty promising.

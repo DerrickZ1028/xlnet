@@ -1,1 +1,0 @@
-It gets louder when you scroll or when it is running some big process.

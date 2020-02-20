@@ -1,1 +1,0 @@
-Touchscreen tracks well with the pen and handles palm detection decently.

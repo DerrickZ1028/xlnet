@@ -1,1 +1,0 @@
-Changed the original boot configuration to UEFI.

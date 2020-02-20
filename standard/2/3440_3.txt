@@ -1,1 +1,0 @@
-Then it got stuck in a loop of rebooting and prompting the same thing.

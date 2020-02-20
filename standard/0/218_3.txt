@@ -1,1 +1,0 @@
-It worked fine for about two months then started having boot up problems.

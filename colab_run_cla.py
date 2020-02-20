@@ -409,12 +409,13 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0","1","2","3","4"]:
+    for label in ["0","1","2","3","4", "aug"]:
       cur_dir = data_dir + '/' + label + '/'
       print(label)
       print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
+        print(filename)
         match = re.findall(r"(?<![a-zA-Z:])[-+]?\d*\.?\d+", filename)
         l = float(match[1])
         if l <= 2:

@@ -1,1 +1,0 @@
-I'm guessing because having a 13" screen with this many pixels compared to a 15" screen with this many pixels, the density is higher for the smaller screen.

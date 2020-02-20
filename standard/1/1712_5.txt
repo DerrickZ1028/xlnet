@@ -1,1 +1,0 @@
-The setup is very Windows-focused: Cortana walks you through and Edge is the default browser (which I immediately switched to Chrome).

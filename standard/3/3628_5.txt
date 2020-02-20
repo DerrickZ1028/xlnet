@@ -1,1 +1,0 @@
-Of that amount 16GB is used by recover and system partitions which are not accessible.

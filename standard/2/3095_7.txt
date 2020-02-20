@@ -1,1 +1,0 @@
-The touchscreen and pen work as intended.

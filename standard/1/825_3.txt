@@ -1,1 +1,0 @@
-The display driver does some awful "adaptive" contrast/brightness adjustment based on what you have on the screen.

@@ -1,1 +1,0 @@
-The Optane also does little to speed up the slow write speed of the QLC drive.

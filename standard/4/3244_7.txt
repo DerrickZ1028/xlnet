@@ -1,1 +1,0 @@
-Written equations can be automatically solved.
