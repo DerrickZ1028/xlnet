@@ -409,7 +409,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0","1","2","3","4"]:
+    for label in ["0","1","2","3","4","reg"]:
       cur_dir = data_dir + '/' + label + '/'
       print(label)
       print(cur_dir)
@@ -467,7 +467,7 @@ class ImdbThreeClassProcessor(DataProcessor):
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0", "1", "2", "3", "4"]:
+    for label in ["0", "1", "2", "3", "4", "aug"]:
       cur_dir = data_dir + '/' + label + '/'
       #print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
