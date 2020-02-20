@@ -1,0 +1,1 @@
+The included stylus is an interesting addition, however, I have not really messed with it too much.

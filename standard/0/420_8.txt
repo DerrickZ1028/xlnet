@@ -1,0 +1,1 @@
+After increasing to 32GB swap space, my stuttering was finally gone! 32GB probably wasn't needed but more than 1GB was.

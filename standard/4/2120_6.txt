@@ -1,0 +1,1 @@
+Although this seems pretty accurate, keep in mind that it is a quad-core cpu with hyperthreading, 4gb gpu, 16 GB of ddr4 2400 mhz ram coupled with a 4k display that gets extremely bright.

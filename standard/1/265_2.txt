@@ -1,0 +1,1 @@
+One, there is a bug in either the hardware or drivers that do not allow videos to play nor sound to assist other applications.

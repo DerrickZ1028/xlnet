@@ -1,0 +1,1 @@
+I did not notice any throttling of the i7 CPU (monitored with task manager) during gaming either.

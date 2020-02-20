@@ -1,0 +1,1 @@
+Probably not a big deal for most people but it's an issue if you're trying to build a Hackintosh- comes with your standard bloatware Windows 10 install- hibernate/Sleep not working properly with Dell Windows 10 factory installSo overall an extremely versatile, powerful, and compact notebook computer.

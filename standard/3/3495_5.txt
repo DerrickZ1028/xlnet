@@ -1,0 +1,1 @@
+The slider was defaulted to 100% on the performance end.

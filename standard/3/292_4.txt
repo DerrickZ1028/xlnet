@@ -1,0 +1,1 @@
+Cons:-- lack of a standard USB port (only USB C port) but I got around this with a dock ("Plugable USB-C Triple Display Docking Station with Charging Support/Power Delivery for Specific Windows USB Type-C and Thunderbolt 3 Systems") and the computer does come with one UBS-C to USB-A converter-- no dedicated video card (an mx150 at least would be nice).

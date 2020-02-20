@@ -1,0 +1,1 @@
+When the machine boots, all three will charge and one of the three will provide USB-C connectivity.

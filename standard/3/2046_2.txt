@@ -1,0 +1,1 @@
+I open the thing, click the power button or click the touchpad, and the screen won't appear for 5-10 seconds, not to mention the delay for the applications to load up.

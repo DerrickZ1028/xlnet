@@ -1,0 +1,1 @@
+Fan is quite noisy and randomly kicks in even when the device is completely idle.

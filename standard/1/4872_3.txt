@@ -1,0 +1,1 @@
+It would stayed connected anywhere from 30 seconds to 30 minutes then drop the connection.

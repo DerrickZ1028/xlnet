@@ -1,0 +1,1 @@
+The audio started malfunctioning (I use lots of VOIP for work, so it's a big issue), so much so that now it can be completely garbled at times.

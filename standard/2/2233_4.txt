@@ -1,0 +1,1 @@
+Shouldn't have to go through bios and find the option to allow the computer to see the drive.

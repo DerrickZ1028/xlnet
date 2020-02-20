@@ -1,0 +1,1 @@
+Keyboard Configuration: Dell has a special keyboard configuration for Ubuntu.I can't remember the exact issues now but I believe that the super key didn't function properly.

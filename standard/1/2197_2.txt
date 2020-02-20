@@ -1,0 +1,1 @@
+Unfortunately, especially when charging, the cpu can reach temps of 60 degrees Celsius and above, even when placed on a flat surface.

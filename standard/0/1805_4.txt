@@ -1,0 +1,1 @@
+Setting dell power manager to quiet mode throttles CPUScreen automatically dims at times even with dim function off.

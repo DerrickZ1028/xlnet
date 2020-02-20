@@ -1,0 +1,1 @@
+Wireless card could not consistently maintain a connection.

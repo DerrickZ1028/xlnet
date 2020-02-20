@@ -1,0 +1,1 @@
+The laptop should thermal throttle well before then and it shouldn't even reach that point.

@@ -1,0 +1,1 @@
+Sometimes takes two to four clicks to power on, then await till fingerprint reader is ready to work.

@@ -1,0 +1,1 @@
+It *NEVER* stops running at high speed regardless of how much or how little the CPU is used.

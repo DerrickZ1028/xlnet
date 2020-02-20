@@ -1,0 +1,1 @@
+The crashes would happen randomly when either using word, or surfing the internet using chrome, or using python.

@@ -1,0 +1,1 @@
+Regarding heat, the base of the system can get uncomfortable warm during GPU heavy game play.

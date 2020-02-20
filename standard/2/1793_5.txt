@@ -1,0 +1,1 @@
+Note: I did apply new thermal paste, updated bios and drivers, and use Intel XTU and Dell Power Management to get my results. You may have different results than mine.

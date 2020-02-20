@@ -1,0 +1,1 @@
+Blue screen crashing periodically and sound not working after computer sleeps/hibernates.

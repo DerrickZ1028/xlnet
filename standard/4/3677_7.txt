@@ -1,0 +1,1 @@
+These sound like trivial things, but if you work with numbers and data a lot, it's incredibly handy to have a shortcut built in.

@@ -1,0 +1,1 @@
+it has problems running graphics intensive programs like Solidworks (CAD program), cant really be used for gaming at all (minecraft even lags).

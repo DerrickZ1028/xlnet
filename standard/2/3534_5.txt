@@ -1,0 +1,1 @@
+Some people might want it to store inside the machine but given how thin the device is, I don't see them accomplishing that without sacrificing something else.

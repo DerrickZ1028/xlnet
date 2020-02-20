@@ -1,0 +1,1 @@
+And the new format for the gpu and cpu on the same chip is super neat and i believe this is the first 2 in 1 to utilize it.

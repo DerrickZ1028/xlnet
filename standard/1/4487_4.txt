@@ -1,0 +1,1 @@
+Battery management slows performance except when the speed is needed.

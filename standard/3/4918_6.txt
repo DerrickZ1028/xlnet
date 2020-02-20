@@ -1,0 +1,1 @@
+After a new update to the GeForce drivers was applied the framerate jumped up to 35-45fps with no flickering, but it couldn't quite muster a stable 60fps.

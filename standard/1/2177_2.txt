@@ -1,0 +1,1 @@
+The issue is the trackpad either simply stops responding to input or goes off on its own and starts moving the mouse and clicking anywhere it feels like.

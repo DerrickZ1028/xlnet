@@ -1,0 +1,1 @@
+Responsive, smooth, and the tapping to select or clicking to select all works consistently.

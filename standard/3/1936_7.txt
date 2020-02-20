@@ -1,0 +1,1 @@
+Dell has add on drivers for audio, power management, wireless, etc.

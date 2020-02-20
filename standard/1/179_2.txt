@@ -1,0 +1,1 @@
+Had charging problems, was later fixed by a BIOS update, shows production/testing issues- Wifi is slow, I would expect faster wireless AC, by default the driver had a setting that rendered 2

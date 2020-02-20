@@ -1,0 +1,1 @@
+Even with the fans spinning like crazy the cpu still reaches 94 degrees.

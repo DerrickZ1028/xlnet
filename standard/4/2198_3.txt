@@ -1,0 +1,1 @@
+The only option to make the temps go down is to put the power management mode to "cool", in which case the fans will go off like crazy.

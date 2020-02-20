@@ -1,0 +1,1 @@
+In real world examples, CSGO pulled in nearly 300fps with all settings maxed out!

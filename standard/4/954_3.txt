@@ -1,0 +1,1 @@
+Once I got it to boot it wouldn't find the internal battery.

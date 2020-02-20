@@ -1,0 +1,1 @@
+The SSD Peaks at a decent 1241MB/s Read and 694MB/s write.

@@ -1,0 +1,1 @@
+Fingerprint sensor driver was failing and graphic card is not recognizeable.

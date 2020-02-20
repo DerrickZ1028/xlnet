@@ -1,0 +1,1 @@
+It doesnt respond well to holding, for example moving an icon.

@@ -1,0 +1,1 @@
+Sound is clear when using headphones through the jack but contains static through the main speakers.

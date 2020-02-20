@@ -1,0 +1,1 @@
+Multi-core performance isn't the best but that's to be expected.

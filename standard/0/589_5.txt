@@ -1,0 +1,1 @@
+Dell automatically installs McAfee, but it can easily be removed if desired.

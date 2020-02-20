@@ -1,0 +1,1 @@
+Windows reports it as a precision touchpad.

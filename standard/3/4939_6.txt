@@ -1,0 +1,1 @@
+Intel UHD 630 graphics  or  NVIDIA Geforce GTX 1660 Ti with Turing architecture, 6GB DDR6 memory with 288.05 Gbps, 1536 CUDA cores, 192 bit interface and graphics boost of 1590 MHz with laptop screen resolution of 1920 x 1080 60MHz.

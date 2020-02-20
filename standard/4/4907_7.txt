@@ -1,0 +1,1 @@
+Nvidia Control Panel allows you to change GPU settings per game like you are used to, but Command Center adds features that let you tweak hardware profiles for thermal performance, audio profile, CPU performance, and Audio Recon spatial audio.

@@ -1,0 +1,1 @@
+The combo power button/fingerprint reader is not marked (top-right key on the keypad).

@@ -1,0 +1,1 @@
+It likes to pretend that there aren't any networks available when waking from sleep, and I end up having to reset the wireless adapter each time, even after updating the driver.

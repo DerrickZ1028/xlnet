@@ -1,0 +1,1 @@
+Lots of instability with 3rd party apps and even default software (e.g. the audio drivers).

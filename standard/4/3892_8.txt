@@ -1,0 +1,1 @@
+App loading and switching is also very fast.
