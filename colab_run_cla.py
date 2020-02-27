@@ -326,7 +326,7 @@ class ImdbProcessor(DataProcessor):
     return self.train
 
   def get_dev_examples(self, data_dir):
-    self._create_examples(data_dir)
+   #self._create_examples(data_dir)
     #print(self.counts)
     if FLAGS.five_fold_mode:
       index = FLAGS.test_fold
@@ -367,6 +367,21 @@ class ImdbProcessor(DataProcessor):
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
+    csv = 'data20.csv'
+    csv_dir = data_dir + '/' + csv
+    with open(csv_dir) as csvfile:
+      readCSV = csv.reader(csvfile, delimiter = ',')
+      for row in readCSV:
+        l = row[0]
+        text = row[1].replace("<br />", " ")
+        if l == '1':
+          l = 'pos'
+        elif l == '0':
+          l = 'neg'
+        else:
+          continue
+        examples.append(InputExample(
+            guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
@@ -389,6 +404,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
       index = FLAGS.test_fold
       self.test = self.examples[index * 1000 : (index+1) * 1000]
       self.train = list(set(self.examples) - set(self.test))
+      self.train = self.train[:20000]
     else:
       random.shuffle(self.examples)
       self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
@@ -403,6 +419,7 @@ class ImdbRegressionClassProcessor(DataProcessor):
       index = FLAGS.test_fold
       self.test = self.examples[index * 1000 : (index+1) * 1000]
       self.train = list(set(self.examples) - set(self.test))
+      self.train = self.train[:20000]
     else:
       #random.shuffle(self.examples)
       self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
