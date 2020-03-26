@@ -319,7 +319,6 @@ class ImdbProcessor(DataProcessor):
 
   def get_dev_examples(self, data_dir):
     self._create_examples(data_dir)
-    #print(self.counts)
     return self.test
 
 
@@ -346,21 +345,22 @@ class ImdbProcessor(DataProcessor):
         else:
           self.train.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
-    # csv = 'data20.csv'
-    # csv_dir = data_dir + '/' + csv
-    # with open(csv_dir) as csvfile:
-    #   readCSV = csv.reader(csvfile, delimiter = ',')
-    #   for row in readCSV:
-    #     l = row[0]
-    #     text = row[1].replace("<br />", " ")
-    #     if l == '1':
-    #       l = 'pos'
-    #     elif l == '0':
-    #       l = 'neg'
-    #     else:
-    #       continue
-    #     examples.append(InputExample(
-    #         guid="unused_id", text_a=text, text_b=None, label=l))
+    csv_name = 'false.csv'
+    csv_dir = data_dir + '/' + csv_name
+    self.test = []
+    with open(csv_dir) as csvfile:
+      readCSV = csv.reader(csvfile, delimiter = ',')
+      for row in readCSV:
+        l = row[1]
+        text = row[0].replace("<br />", " ")
+        if l == 'pos':
+          l = 'pos'
+        elif l == 'neg':
+          l = 'neg'
+        else:
+          continue
+        self.test.append(InputExample(
+            guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
