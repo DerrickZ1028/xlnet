@@ -362,30 +362,32 @@ class ImdbProcessor(DataProcessor):
         #     self.train_count[l] = self.train_count[l] + 1
         #   else:
         #     self.test_count[l] = 0
+
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         examples.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
-    csv = 'data20.csv'
-    csv_dir = data_dir + '/' + csv
-    with open(csv_dir) as csvfile:
-      readCSV = csv.reader(csvfile, delimiter = ',')
-      for row in readCSV:
-        l = row[0]
-        text = row[1].replace("<br />", " ")
-        if l == '1':
-          l = 'pos'
-        elif l == '0':
-          l = 'neg'
-        else:
-          continue
-        examples.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
+    # csv = 'data20.csv'
+    # csv_dir = data_dir + '/' + csv
+    # with open(csv_dir) as csvfile:
+    #   readCSV = csv.reader(csvfile, delimiter = ',')
+    #   for row in readCSV:
+    #     l = row[0]
+    #     text = row[1].replace("<br />", " ")
+    #     if l == '1':
+    #       l = 'pos'
+    #     elif l == '0':
+    #       l = 'neg'
+    #     else:
+    #       continue
+    #     examples.append(InputExample(
+    #         guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
 class ImdbRegressionClassProcessor(DataProcessor):
+  
   def __init__(self):
     self.examples = []
     self.train = []
