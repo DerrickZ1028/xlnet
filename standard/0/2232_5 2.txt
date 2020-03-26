@@ -1,0 +1,1 @@
+Replacing the drive should be, remove, insert, boot up and install os.

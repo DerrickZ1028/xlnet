@@ -1,0 +1,1 @@
+The NVIDIA GeForce MX250 graphics card seems robust and the onboard 2GB GDDR5 memory seemed to do well when I ran benchmark software against it.

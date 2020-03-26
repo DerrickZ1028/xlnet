@@ -1,0 +1,1 @@
+The Radeon sometimes has a problem kicking in for certain games or apps - particularly from the Microsoft Store - resulting in my having to tinker with the system to get stuff working properly.

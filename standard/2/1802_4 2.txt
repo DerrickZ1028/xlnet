@@ -1,0 +1,1 @@
+It seems the fan comes on more if you use the discrete graphics card.

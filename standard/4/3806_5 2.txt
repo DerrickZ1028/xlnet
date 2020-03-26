@@ -1,0 +1,1 @@
+After calibration the display was capable of rendering 97% of the RGB color gamut, but only 76% and 80% of the NTSC and AdobeRGB gamuts, respectively.

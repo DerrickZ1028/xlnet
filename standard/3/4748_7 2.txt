@@ -1,0 +1,1 @@
+firmware update Large number of ports including USB and Thunderbolt Ports with larger cables are on the back, so they don't block usage of a mouse

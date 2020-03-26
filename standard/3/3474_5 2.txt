@@ -1,0 +1,1 @@
+The backlighting goes off automatically if the keyboard isn't used for several seconds, but comes back on if you push a key or touch the keypad.

@@ -1,0 +1,1 @@
+After setup there was 460GB usable space on the C: drive with 426GB free.

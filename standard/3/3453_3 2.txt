@@ -1,0 +1,1 @@
+I was trying to find Dell Mobile Connect (which wasn't pre-installed as advertised) and then in the App Store it said my device was not compatible with the app and then it froze, got a blue screen with a quick message I couldn't even read all of (something about resetting) and then it turned off and wouldn't turn back on with the press of the power button.

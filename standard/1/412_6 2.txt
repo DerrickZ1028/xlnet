@@ -1,0 +1,1 @@
+At that point I installed TLP to use a power savings mode when on battery which helped a little.

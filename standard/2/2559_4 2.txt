@@ -1,0 +1,1 @@
+When I was setting up Windows Hello I almost screamed because it shows a camera view.

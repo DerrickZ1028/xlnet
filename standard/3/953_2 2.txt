@@ -1,0 +1,1 @@
+First boot had bios erros and failed to start.

@@ -1,0 +1,1 @@
+I also installed Ubuntu 18.04 as another boot option and the standard Desktop install worked perfectly except for the camera.

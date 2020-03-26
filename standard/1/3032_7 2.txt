@@ -1,0 +1,1 @@
+I put it to the test by downloading Anaconda and simultaneously setting up Outlook and didn't have any problems.

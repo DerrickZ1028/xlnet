@@ -1,0 +1,1 @@
+The lower half of the trackpad was frequently unresponsive.

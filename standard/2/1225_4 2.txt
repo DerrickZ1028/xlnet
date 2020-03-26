@@ -1,0 +1,1 @@
+The text on the chrome/IE window tab is noticeably dimmer towards the top.

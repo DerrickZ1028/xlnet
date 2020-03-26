@@ -1,0 +1,1 @@
+People keep complaining about the FAN NOISE well the only thing you have to do is to go into the Dell Power Manager and change from Quiet mode to Optimized and you will not hear the FAN NOISE anymore.

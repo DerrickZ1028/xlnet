@@ -1,0 +1,1 @@
+The keys have two levels of backlighting brightness and the light does turn itself off if you don't press a key for a while.

@@ -1,0 +1,1 @@
+After Dell fixed the fan issues and I made some tweaks to fix the battery draining issues during sleep, made some tweaks to get more battery life with TLP, and fixed the keyboard by removed Dell's keyboard mods, I still had one main problem...to fix the freezing.

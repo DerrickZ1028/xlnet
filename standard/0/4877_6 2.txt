@@ -1,0 +1,1 @@
+If you leave the computer running and/or just close screen standard chargers do not have enough power to charge this compute  There are 12V chargers that are supposed to be able charge this computer while it is running or you can get a DC to 120V AC converter and use the standard charger.

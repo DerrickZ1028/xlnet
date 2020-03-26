@@ -1,0 +1,1 @@
+With an NVIDIA MX250 discreet GPU, this should easily handle all your 3d rendering or gaming needs.

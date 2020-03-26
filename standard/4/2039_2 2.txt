@@ -1,0 +1,1 @@
+Tried everything to fix (BIOs updates, settings, limiting start-up/background tasks) -I experience touchpad issues every single day, It stops working after a few minutes, then acts erratically by registering clicks when I'm not even touching the computer.

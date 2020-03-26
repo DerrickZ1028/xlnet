@@ -1,0 +1,1 @@
+Games still take their time to load but once a game loads the difference is noticeable.

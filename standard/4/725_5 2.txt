@@ -1,0 +1,1 @@
+Given the small size, some of the larger ports have been axed in favor for USB C so plan accordingly (USB C Hub / dongles) but I doubt these are built with the intention to be plugged to an RJ45.

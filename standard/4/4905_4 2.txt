@@ -1,0 +1,1 @@
+Strangely it prompts to install an update which fails saying you need to uninstall the old version first instead of just removing or upgrading it for you.

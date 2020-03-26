@@ -1,0 +1,1 @@
+The display stayed very bright for 4 hours and 15 minutes and then dimmed when it went into battery saving mode when the battery level dipped to 10%.

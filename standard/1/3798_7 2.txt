@@ -1,0 +1,1 @@
+Addition of the NVidia GX250 GPU enhances 3D graphics performance (an advantage for gaming).

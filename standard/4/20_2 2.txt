@@ -1,0 +1,1 @@
+Now it wont boot (lights work, black screen, flashing power light).
