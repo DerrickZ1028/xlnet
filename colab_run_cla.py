@@ -337,6 +337,7 @@ class ImdbProcessor(DataProcessor):
           l = "neg"
         else:
           continue
+        path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
         if int(label) == FLAGS.test_fold:
