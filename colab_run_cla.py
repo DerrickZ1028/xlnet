@@ -315,26 +315,11 @@ class ImdbProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    #print(self.counts)
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-    else:
-      random.shuffle(self.examples)
-      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
     return self.train
 
   def get_dev_examples(self, data_dir):
-   #self._create_examples(data_dir)
+    self._create_examples(data_dir)
     #print(self.counts)
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-    else:
-      #random.shuffle(self.examples)
-      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
     return self.test
 
 
@@ -352,21 +337,13 @@ class ImdbProcessor(DataProcessor):
           l = "neg"
         else:
           continue
-        # if int(label) == FLAGS.test_fold:
-        #   if l in self.test_count:
-        #     self.test_count[l] = self.test_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
-        # else:
-        #   if l in self.train_count:
-        #     self.train_count[l] = self.train_count[l] + 1
-        #   else:
-        #     self.test_count[l] = 0
-
-        path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
-        examples.append(InputExample(
+        if int(label) == FLAGS.test_fold:
+          self.test.append(InputExample(
+            guid="unused_id", text_a=text, text_b=None, label=l))
+        else:
+          self.train.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
     # csv = 'data20.csv'
     # csv_dir = data_dir + '/' + csv
@@ -387,7 +364,7 @@ class ImdbProcessor(DataProcessor):
     return examples
 
 class ImdbRegressionClassProcessor(DataProcessor):
-  
+
   def __init__(self):
     self.examples = []
     self.train = []
