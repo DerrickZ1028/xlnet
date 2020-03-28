@@ -408,17 +408,19 @@ void DataBase::Join(string tb1, string tb2){
     unsigned int tb = 0;
     unsigned int N = 0;
     cin >> col1 >> cmd >> col2 >> cmd >> cmd >> N;
-    if (tables[tb1]->col_names.find(col1) == tables[tb1]->col_names.end()) {
+    auto& _tb1 = tables[tb1];
+    auto& _tb2 = tables[tb2];
+    if (_tb1->col_names.find(col1) == _tb1->col_names.end()) {
         cout << "Error: " << col1 <<" does not name a column in " << tb1 << "\n";
         getline(cin,cmd);
         return;
-    } else if (tables[tb2]->col_names.find(col2) == tables[tb2]->col_names.end()){
+    } else if (_tb2->col_names.find(col2) == _tb2->col_names.end()){
         cout << "Error: " << col2 <<" does not name a column in " << tb2 << "\n";
         getline(cin,cmd);
         return;
     } else {
-        unsigned int idxCol1 = tables[tb1]->col_names[col1];
-        unsigned int idxCol2 = tables[tb2]->col_names[col2];
+        unsigned int idxCol1 = _tb1->col_names[col1];
+        unsigned int idxCol2 = _tb2->col_names[col2];
         // print column name
         vector<unsigned int> idxTable;
         vector<unsigned int> idxColumn;
@@ -427,20 +429,20 @@ void DataBase::Join(string tb1, string tb2){
         for (unsigned int i = 0; i < N; ++i) {
             cin >> cmd >> tb;
             if(!quietMode) cout << cmd << " ";
-            if (tb == 1 && tables[tb1]->col_names.find(cmd) == tables[tb1]->col_names.end()) {
+            if (tb == 1 && _tb1->col_names.find(cmd) == _tb1->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb1 << "\n";
                 getline(cin,cmd);
                 return;
-            } else if (tb == 2 && tables[tb2]->col_names.find(cmd) == tables[tb2]->col_names.end()) {
+            } else if (tb == 2 && _tb2->col_names.find(cmd) == _tb2->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb2 << "\n";
                 getline(cin,cmd);
                 return;
             } else {
                 idxTable[i] = tb;
                 if (tb == 1) {
-                    idxColumn[i] = tables[tb1]->col_names[cmd];
+                    idxColumn[i] = _tb1->col_names[cmd];
                 } else { // tb2
-                    idxColumn[i] = tables[tb2]->col_names[cmd];
+                    idxColumn[i] = _tb2->col_names[cmd];
                 } // inner if-else
             } // end if-else
         } // for
@@ -448,19 +450,19 @@ void DataBase::Join(string tb1, string tb2){
         // iterate through tb1
         unsigned int num_printed = 0;
         
-        for (unsigned int i = 0; i < tables[tb1]->num_row; ++i) {
+        for (unsigned int i = 0; i < _tb1->num_row; ++i) {
             
-            if (tables[tb2]->hash && tables[tb2]->indexCol == idxCol2) { // table 2 has a hash table
-                for (auto it = tables[tb2]->myHash.begin(); it != tables[tb2]->myHash.end(); ++it) {
-                    if (it->first == tables[tb1]->content[i][idxCol1]) {
+            if (_tb2->hash && _tb2->indexCol == idxCol2) { // table 2 has a hash table
+                for (auto it = _tb2->myHash.begin(); it != _tb2->myHash.end(); ++it) {
+                    if (it->first == _tb1->content[i][idxCol1]) {
                         for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
                             // print matched rows
                             if (!quietMode) {
                                 for (unsigned int k = 0; k < N; ++k) {
                                     if (idxTable[k] == 1) {
-                                        cout << tables[tb1]->content[i][idxColumn[k]] << " ";
+                                        cout << _tb1->content[i][idxColumn[k]] << " ";
                                     } else { // tb2
-                                        cout << tables[tb2]->content[it->second[j]][idxColumn[k]] << " ";
+                                        cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
                                     } // if-else
                                 } // print for loop
                                 cout << "\n";
@@ -469,17 +471,17 @@ void DataBase::Join(string tb1, string tb2){
                         }
                     } // if
                 } // for
-            } else if (tables[tb2]->bst && tables[tb2]->indexCol == idxCol2) {
-                for (auto it = tables[tb2]->myBST.begin(); it != tables[tb2]->myBST.end(); ++it) {
-                    if (it->first == tables[tb1]->content[i][idxCol1]) {
+            } else if (_tb2->bst && _tb2->indexCol == idxCol2) {
+                for (auto it = _tb2->myBST.begin(); it != _tb2->myBST.end(); ++it) {
+                    if (it->first == _tb1->content[i][idxCol1]) {
                         for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
                             // print matched rows
                             if (!quietMode) {
                                 for (unsigned int k = 0; k < N; ++k) {
                                     if (idxTable[k] == 1) {
-                                        cout << tables[tb1]->content[i][idxColumn[k]] << " ";
+                                        cout << _tb1->content[i][idxColumn[k]] << " ";
                                     } else { // tb2
-                                        cout << tables[tb2]->content[it->second[j]][idxColumn[k]] << " ";
+                                        cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
                                     } // if-else
                                 } // print for loop
                                 cout << "\n";
@@ -489,16 +491,16 @@ void DataBase::Join(string tb1, string tb2){
                     } // if
                 } // for
             } else {
-                for (unsigned int j = 0; j < tables[tb2]->num_row; ++j) {
+                for (unsigned int j = 0; j < _tb2->num_row; ++j) {
                     // matching rows
-                    if (tables[tb1]->content[i][idxCol1] == tables[tb2]->content[j][idxCol2]) {
+                    if (_tb1->content[i][idxCol1] == _tb2->content[j][idxCol2]) {
                         // print matched rows
                         if (!quietMode) {
                             for (unsigned int k = 0; k < N; ++k) {
                                 if (idxTable[k] == 1) {
-                                    cout << tables[tb1]->content[i][idxColumn[k]] << " ";
+                                    cout << _tb1->content[i][idxColumn[k]] << " ";
                                 } else { // tb2
-                                    cout << tables[tb2]->content[j][idxColumn[k]] << " ";
+                                    cout << _tb2->content[j][idxColumn[k]] << " ";
                                 } // if-else
                             } // print for loop
                             cout << "\n";
