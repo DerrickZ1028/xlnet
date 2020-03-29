@@ -32,7 +32,7 @@ public:
     unsigned int num_row = 0;
     string name = " ";
     vector<EntryType> col_types;
-    vector<string> col_names;
+    unordered_map<string, unsigned int> col_names;
     vector<vector<TableEntry>> content;
     // generate index
     bool hash = false;
@@ -84,7 +84,7 @@ void Table::CreateTable(){
     } // end for - assign column_types
     for (unsigned int i = 0; i < num_col; ++i) {
         cin >> cmd;
-        col_names.push_back(cmd);
+        col_names[cmd] = i;
         cout << cmd << " ";
     } // end for - assign column_names
     cout << "created\n";
@@ -197,41 +197,47 @@ void Table::Print(bool quietMode){
     string cmd;
     unsigned int num;
     cin >> num; // N - number of columns to print
+    vector<string> headers;
+    headers.resize(num);
     vector<unsigned int> idx;
     idx.resize(num);
-    // print column names
+    
     for (unsigned int i = 0; i < num; ++i) {
         cin >> cmd;
-        if (!quietMode) {
-            cout << cmd << " ";
-        }
-        auto it = find(col_names.begin(), col_names.end(), cmd);
-        if (it == col_names.end()) {
+        if (col_names.find(cmd) == col_names.end()) {
             cout << "Error: " << cmd <<" does not name a column in " << name << "\n";
             getline(cin,cmd);
             return;
         } else {
-            idx[i] = it-col_names.begin();
+            idx[i] = col_names.at(cmd);
+            headers[i] = cmd;
         }
     } // end for
-    if (!quietMode) {
-        cout << "\n";
-    }
     cin >> cmd; // where/all
     if (cmd == "WHERE") { // where
         cin >> cmd; // column name
-        auto it = find(col_names.begin(), col_names.end(), cmd);
-        if (it == col_names.end()) {
+        if (col_names.find(cmd) == col_names.end()) {
             cout << "Error: " << cmd <<" does not name a column in " << name << "\n";
             getline(cin,cmd);
             return;
         } else {
             cin >> myOptr;
-            myCol = it - col_names.begin();
+            myCol = col_names.at(cmd);
+            // print column names
+            if (!quietMode) {
+                for (unsigned int i= 0; i < num; ++i) {
+                    cout << headers[i] << " ";
+                }
+                cout << "\n";
+            } // if
             PrintWhere(num, idx, quietMode);
         } // if-else
     } else { // all
         if (!quietMode) {
+            for (unsigned int i= 0; i < num; ++i) {
+                cout << headers[i] << " ";
+            }
+            cout << "\n";
             for (unsigned int i = 0; i < num_row; ++i) {
                 for (unsigned int j = 0; j < num; ++j) {
                     cout << content[i][idx[j]] << " ";
@@ -379,8 +385,7 @@ unsigned int Table::PrintIndex(TableEntry value, unsigned int num, vector<unsign
 } // Print with index generated
 
 void Table::GenIndex(string type, string col){
-    auto it = find(col_names.begin(), col_names.end(), col);
-    if (it == col_names.end()) {
+    if (col_names.find(col) == col_names.end()) {
         cout << "Error: " << col <<" does not name a column in " << name << "\n";
         getline(cin,type);
         return;
@@ -391,7 +396,7 @@ void Table::GenIndex(string type, string col){
         myHash.clear();
         myBST.clear();
         // new index
-        indexCol = it-col_names.begin();
+        indexCol = col_names.at(col);
         if (type == "hash") {
             hash = true;
             for (unsigned int i = 0; i < num_row; ++i) {
@@ -416,19 +421,17 @@ void DataBase::Join(string tb1, string tb2){
     cin >> col1 >> cmd >> col2 >> cmd >> cmd >> N;
     auto & _tb1=tables.at(tb1);
     auto & _tb2=tables.at(tb2);
-    auto it1 = find(_tb1->col_names.begin(), _tb1->col_names.end(), col1);
-    auto it2 = find(_tb2->col_names.begin(), _tb2->col_names.end(), col2);
-    if (it1 == _tb1->col_names.end()) {
+    if (_tb1->col_names.find(col1) == _tb1->col_names.end()) {
         cout << "Error: " << col1 <<" does not name a column in " << tb1 << "\n";
         getline(cin,cmd);
         return;
-    } else if (it2 == _tb2->col_names.end()){
+    } else if (_tb2->col_names.find(col2) == _tb2->col_names.end()){
         cout << "Error: " << col2 <<" does not name a column in " << tb2 << "\n";
         getline(cin,cmd);
         return;
     } else {
-        unsigned int idxCol1 = it1 - _tb1->col_names.begin();
-        unsigned int idxCol2 = it2 - _tb2->col_names.begin();
+        unsigned int idxCol1 = _tb1->col_names.at(col1);
+        unsigned int idxCol2 = _tb2->col_names.at(col2);
         // print column name
         vector<unsigned int> idxTable;
         vector<unsigned int> idxColumn;
@@ -436,25 +439,23 @@ void DataBase::Join(string tb1, string tb2){
         idxColumn.resize(N);
         for (unsigned int i = 0; i < N; ++i) {
             cin >> cmd >> tb;
-            if (!quietMode) {
-                cout << cmd << " ";
-            }
-            auto it1 = find(_tb1->col_names.begin(), _tb1->col_names.end(), cmd);
-            auto it2 = find(_tb2->col_names.begin(), _tb2->col_names.end(), cmd);
-            if (tb == 1 && it1 == _tb1->col_names.end()) {
+            if (tb == 1 && _tb1->col_names.find(cmd) == _tb1->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb1 << "\n";
                 getline(cin,cmd);
                 return;
-            } else if (tb == 2 && it2 == _tb2->col_names.end()) {
+            } else if (tb == 2 && _tb2->col_names.find(cmd) == _tb2->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb2 << "\n";
                 getline(cin,cmd);
                 return;
             } else {
                 idxTable[i] = tb;
+                if (!quietMode) {
+                    cout << cmd << " ";
+                }
                 if (tb == 1) {
-                    idxColumn[i] = it1 - _tb1->col_names.begin();
+                    idxColumn[i] = _tb1->col_names.at(cmd);
                 } else { // tb2
-                    idxColumn[i] = it2 - _tb2->col_names.begin();
+                    idxColumn[i] = _tb2->col_names.at(cmd);
                 } // inner if-else
             } // end if-else
         } // for
@@ -467,7 +468,7 @@ void DataBase::Join(string tb1, string tb2){
         for (unsigned int i = 0; i < _tb1->num_row; ++i) {
             
             if (_tb2->hash && _tb2->indexCol == idxCol2) { // table 2 has a hash table
-            auto it = _tb2->myHash.find(_tb1->content[i][idxCol1]);
+                auto it = _tb2->myHash.find(_tb1->content[i][idxCol1]);
                 if (it != _tb2->myHash.end()) {
                     for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
                         // print matched rows
@@ -483,8 +484,7 @@ void DataBase::Join(string tb1, string tb2){
                         } // if not quietMode
                         ++num_printed;
                     }
-                } // if
-                
+                }
             } else if (_tb2->bst && _tb2->indexCol == idxCol2) {
                 auto it = _tb2->myBST.find(_tb1->content[i][idxCol1]);
                 if (it != _tb2->myBST.end()) {
@@ -501,9 +501,8 @@ void DataBase::Join(string tb1, string tb2){
                             cout << "\n";
                         } // if not quietMode
                         ++num_printed;
-                    }
+                    } // for
                 } // if
-                
             } else {
                 for (unsigned int j = 0; j < _tb2->num_row; ++j) {
                     // matching rows
@@ -578,13 +577,12 @@ void DataBase::ReadInput(){
                 } else {
                     string Col;
                     cin >> Col >>Col; // column name
-                    auto it1 = find(tables.at(cmd)->col_names.begin(), tables.at(cmd)->col_names.end(), Col);
-                    if (it1 == tables.at(cmd)->col_names.end()) {
+                    if (tables.at(cmd)->col_names.find(Col) == tables.at(cmd)->col_names.end()) {
                         cout << "Error: "<< Col <<" does not name a column in " << cmd << "\n";
                         getline(cin,cmd);
                     }else{
                         cin >> optr; // operator
-                        tables.at(cmd)->DeleteWhere(it1 - tables.at(cmd)->col_names.begin(),optr);
+                        tables.at(cmd)->DeleteWhere(tables.at(cmd)->col_names.at(Col),optr);
                     } // end if-else
                 } // end if-else
                 break;
@@ -635,8 +633,8 @@ void DataBase::ReadInput(){
                     auto it = tables.find(cmd);
                     delete it->second;
                     tables.erase(cmd);
+                    cout << "Table " << cmd << " deleted\n";
                 } // if-else
-                cout << "Table " << cmd << " deleted\n";
                 break;
             case '#': // ignore comments
                 getline(cin, cmd);
