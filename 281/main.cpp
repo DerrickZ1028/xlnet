@@ -32,7 +32,7 @@ public:
     unsigned int num_row = 0;
     string name = " ";
     vector<EntryType> col_types;
-    unordered_map<string, unsigned int> col_names;
+    vector<string> col_names;
     vector<vector<TableEntry>> content;
     // generate index
     bool hash = false;
@@ -84,7 +84,7 @@ void Table::CreateTable(){
     } // end for - assign column_types
     for (unsigned int i = 0; i < num_col; ++i) {
         cin >> cmd;
-        col_names[cmd] = i;
+        col_names.push_back(cmd);
         cout << cmd << " ";
     } // end for - assign column_names
     cout << "created\n";
@@ -205,12 +205,13 @@ void Table::Print(bool quietMode){
         if (!quietMode) {
             cout << cmd << " ";
         }
-        if (col_names.find(cmd) == col_names.end()) {
+        auto it = find(col_names.begin(), col_names.end(), cmd);
+        if (it == col_names.end()) {
             cout << "Error: " << cmd <<" does not name a column in " << name << "\n";
             getline(cin,cmd);
             return;
         } else {
-            idx[i] = col_names.at(cmd);
+            idx[i] = it-col_names.begin();
         }
     } // end for
     if (!quietMode) {
@@ -219,13 +220,14 @@ void Table::Print(bool quietMode){
     cin >> cmd; // where/all
     if (cmd == "WHERE") { // where
         cin >> cmd; // column name
-        if (col_names.find(cmd) == col_names.end()) {
+        auto it = find(col_names.begin(), col_names.end(), cmd);
+        if (it == col_names.end()) {
             cout << "Error: " << cmd <<" does not name a column in " << name << "\n";
             getline(cin,cmd);
             return;
         } else {
             cin >> myOptr;
-            myCol = col_names.at(cmd);
+            myCol = it - col_names.begin();
             PrintWhere(num, idx, quietMode);
         } // if-else
     } else { // all
@@ -377,7 +379,8 @@ unsigned int Table::PrintIndex(TableEntry value, unsigned int num, vector<unsign
 } // Print with index generated
 
 void Table::GenIndex(string type, string col){
-    if (col_names.find(col) == col_names.end()) {
+    auto it = find(col_names.begin(), col_names.end(), col);
+    if (it == col_names.end()) {
         cout << "Error: " << col <<" does not name a column in " << name << "\n";
         getline(cin,type);
         return;
@@ -388,7 +391,7 @@ void Table::GenIndex(string type, string col){
         myHash.clear();
         myBST.clear();
         // new index
-        indexCol = col_names.at(col);
+        indexCol = it-col_names.begin();
         if (type == "hash") {
             hash = true;
             for (unsigned int i = 0; i < num_row; ++i) {
@@ -413,17 +416,19 @@ void DataBase::Join(string tb1, string tb2){
     cin >> col1 >> cmd >> col2 >> cmd >> cmd >> N;
     auto & _tb1=tables.at(tb1);
     auto & _tb2=tables.at(tb2);
-    if (_tb1->col_names.find(col1) == _tb1->col_names.end()) {
+    auto it1 = find(_tb1->col_names.begin(), _tb1->col_names.end(), col1);
+    auto it2 = find(_tb2->col_names.begin(), _tb2->col_names.end(), col2);
+    if (it1 == _tb1->col_names.end()) {
         cout << "Error: " << col1 <<" does not name a column in " << tb1 << "\n";
         getline(cin,cmd);
         return;
-    } else if (_tb2->col_names.find(col2) == _tb2->col_names.end()){
+    } else if (it2 == _tb2->col_names.end()){
         cout << "Error: " << col2 <<" does not name a column in " << tb2 << "\n";
         getline(cin,cmd);
         return;
     } else {
-        unsigned int idxCol1 = _tb1->col_names.at(col1);
-        unsigned int idxCol2 = _tb2->col_names.at(col2);
+        unsigned int idxCol1 = it1 - _tb1->col_names.begin();
+        unsigned int idxCol2 = it2 - _tb2->col_names.begin();
         // print column name
         vector<unsigned int> idxTable;
         vector<unsigned int> idxColumn;
@@ -434,20 +439,22 @@ void DataBase::Join(string tb1, string tb2){
             if (!quietMode) {
                 cout << cmd << " ";
             }
-            if (tb == 1 && _tb1->col_names.find(cmd) == _tb1->col_names.end()) {
+            auto it1 = find(_tb1->col_names.begin(), _tb1->col_names.end(), cmd);
+            auto it2 = find(_tb2->col_names.begin(), _tb2->col_names.end(), cmd);
+            if (tb == 1 && it1 == _tb1->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb1 << "\n";
                 getline(cin,cmd);
                 return;
-            } else if (tb == 2 && _tb2->col_names.find(cmd) == _tb2->col_names.end()) {
+            } else if (tb == 2 && it2 == _tb2->col_names.end()) {
                 cout << "Error: " << cmd <<" does not name a column in " << tb2 << "\n";
                 getline(cin,cmd);
                 return;
             } else {
                 idxTable[i] = tb;
                 if (tb == 1) {
-                    idxColumn[i] = _tb1->col_names.at(cmd);
+                    idxColumn[i] = it1 - _tb1->col_names.begin();
                 } else { // tb2
-                    idxColumn[i] = _tb2->col_names.at(cmd);
+                    idxColumn[i] = it2 - _tb2->col_names.begin();
                 } // inner if-else
             } // end if-else
         } // for
@@ -571,12 +578,13 @@ void DataBase::ReadInput(){
                 } else {
                     string Col;
                     cin >> Col >>Col; // column name
-                    if (tables.at(cmd)->col_names.find(Col) == tables.at(cmd)->col_names.end()) {
+                    auto it1 = find(tables.at(cmd)->col_names.begin(), tables.at(cmd)->col_names.end(), Col);
+                    if (it1 == tables.at(cmd)->col_names.end()) {
                         cout << "Error: "<< Col <<" does not name a column in " << cmd << "\n";
                         getline(cin,cmd);
                     }else{
                         cin >> optr; // operator
-                        tables.at(cmd)->DeleteWhere(tables.at(cmd)->col_names.at(Col),optr);
+                        tables.at(cmd)->DeleteWhere(it1 - tables.at(cmd)->col_names.begin(),optr);
                     } // end if-else
                 } // end if-else
                 break;
