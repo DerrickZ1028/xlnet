@@ -467,43 +467,43 @@ void DataBase::Join(string tb1, string tb2){
         for (unsigned int i = 0; i < _tb1->num_row; ++i) {
             
             if (_tb2->hash && _tb2->indexCol == idxCol2) { // table 2 has a hash table
-                for (auto it = _tb2->myHash.begin(); it != _tb2->myHash.end(); ++it) {
-                    if (it->first == _tb1->content[i][idxCol1]) {
-                        for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
-                            // print matched rows
-                            if (!quietMode) {
-                                for (unsigned int k = 0; k < N; ++k) {
-                                    if (idxTable[k] == 1) {
-                                        cout << _tb1->content[i][idxColumn[k]] << " ";
-                                    } else { // tb2
-                                        cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
-                                    } // if-else
-                                } // print for loop
-                                cout << "\n";
-                            } // if not quietMode
-                            ++num_printed;
-                        }
-                    } // if
-                } // for
+            auto it = _tb2->myHash.find(_tb1->content[i][idxCol1]);
+                if (it != _tb2->myHash.end()) {
+                    for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
+                        // print matched rows
+                        if (!quietMode) {
+                            for (unsigned int k = 0; k < N; ++k) {
+                                if (idxTable[k] == 1) {
+                                    cout << _tb1->content[i][idxColumn[k]] << " ";
+                                } else { // tb2
+                                    cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
+                                } // if-else
+                            } // print for loop
+                            cout << "\n";
+                        } // if not quietMode
+                        ++num_printed;
+                    }
+                } // if
+                
             } else if (_tb2->bst && _tb2->indexCol == idxCol2) {
-                for (auto it = _tb2->myBST.begin(); it != _tb2->myBST.end(); ++it) {
-                    if (it->first == _tb1->content[i][idxCol1]) {
-                        for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
-                            // print matched rows
-                            if (!quietMode) {
-                                for (unsigned int k = 0; k < N; ++k) {
-                                    if (idxTable[k] == 1) {
-                                        cout << _tb1->content[i][idxColumn[k]] << " ";
-                                    } else { // tb2
-                                        cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
-                                    } // if-else
-                                } // print for loop
-                                cout << "\n";
-                            } // if not quietMode
-                            ++num_printed;
-                        }
-                    } // if
-                } // for
+                auto it = _tb2->myBST.find(_tb1->content[i][idxCol1]);
+                if (it != _tb2->myBST.end()) {
+                    for (unsigned int j = 0; j < (unsigned int)it->second.size(); ++j) {
+                        // print matched rows
+                        if (!quietMode) {
+                            for (unsigned int k = 0; k < N; ++k) {
+                                if (idxTable[k] == 1) {
+                                    cout << _tb1->content[i][idxColumn[k]] << " ";
+                                } else { // tb2
+                                    cout << _tb2->content[it->second[j]][idxColumn[k]] << " ";
+                                } // if-else
+                            } // print for loop
+                            cout << "\n";
+                        } // if not quietMode
+                        ++num_printed;
+                    }
+                } // if
+                
             } else {
                 for (unsigned int j = 0; j < _tb2->num_row; ++j) {
                     // matching rows
