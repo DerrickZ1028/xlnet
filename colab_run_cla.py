@@ -339,7 +339,7 @@ class ImdbProcessor(DataProcessor):
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
-        fiscard = False
+        discard = False
         words = ['but', 'though', 'although', 'however']
         for word in words:
           if word in text:
