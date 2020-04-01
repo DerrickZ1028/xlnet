@@ -339,6 +339,13 @@ class ImdbProcessor(DataProcessor):
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
+        fiscard = False
+        words = ['but', 'though', 'although', 'however']
+        for word in words:
+          if word in text:
+            discard = True
+        if discard:
+          continue
         if int(label) == FLAGS.test_fold:
           self.test.append(InputExample(
             guid="unused_id", text_a=text, text_b=None, label=l))
@@ -347,20 +354,20 @@ class ImdbProcessor(DataProcessor):
             guid="unused_id", text_a=text, text_b=None, label=l))
     csv_name = 'false.csv'
     csv_dir = data_dir + '/' + csv_name
-    self.test = []
-    with open(csv_dir) as csvfile:
-      readCSV = csv.reader(csvfile, delimiter = ',')
-      for row in readCSV:
-        l = row[1]
-        text = row[0].replace("<br />", " ")
-        if l == 'pos':
-          l = 'pos'
-        elif l == 'neg':
-          l = 'neg'
-        else:
-          continue
-        self.test.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
+    # self.test = []
+    # with open(csv_dir) as csvfile:
+    #   readCSV = csv.reader(csvfile, delimiter = ',')
+    #   for row in readCSV:
+    #     l = row[1]
+    #     text = row[0].replace("<br />", " ")
+    #     if l == 'pos':
+    #       l = 'pos'
+    #     elif l == 'neg':
+    #       l = 'neg'
+    #     else:
+    #       continue
+    #     self.test.append(InputExample(
+    #         guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
