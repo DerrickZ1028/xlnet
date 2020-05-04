@@ -868,18 +868,18 @@ def main(_):
     text = preprocess_text(text, lower=FLAGS.uncased)
     return encode_ids(sp, text)
   
-  tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
-  tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu_address)
-  is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
-  run_config = tf.contrib.tpu.RunConfig(
-      cluster=tpu_cluster_resolver,
-      model_dir=FLAGS.model_dir,
-      save_checkpoints_steps=2000,
-      keep_checkpoint_max=10,
-      tpu_config=tf.contrib.tpu.TPUConfig(
-          iterations_per_loop=1000,
-          num_shards=8,
-          per_host_input_for_training=is_per_host))
+  # tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
+  # tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu_address)
+  # is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
+  # run_config = tf.contrib.tpu.RunConfig(
+  #     cluster=tpu_cluster_resolver,
+  #     model_dir=FLAGS.model_dir,
+  #     save_checkpoints_steps=2000,
+  #     keep_checkpoint_max=10,
+  #     tpu_config=tf.contrib.tpu.TPUConfig(
+  #         iterations_per_loop=1000,
+  #         num_shards=8,
+  #         per_host_input_for_training=is_per_host))
 
   model_fn = get_model_fn(len(label_list) if label_list is not None else None)
 
