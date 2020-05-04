@@ -35,6 +35,8 @@ flags.DEFINE_string("model_config_path", default=None,
       help="Model config path.")
 flags.DEFINE_bool("five_fold_mode", default=False,
       help="Five fold mode.")
+flags.DEFINE_bool("train_all", default=False,
+      help="Train on all 5000 samples.")
 flags.DEFINE_integer("test_fold", default=0,
       help="Which fold is test fold.")
 flags.DEFINE_float("dropout", default=0.1,
@@ -306,9 +308,6 @@ class ImdbProcessor(DataProcessor):
     self.examples = []
     self.train = []
     self.test = []
-    self.counts = {}
-    self.test_count = {}
-    self.train_count = {}
 
   def get_labels(self):
     return ["neg", "pos"]
@@ -339,35 +338,16 @@ class ImdbProcessor(DataProcessor):
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
-        # discard = False
-        # words = ['but', 'though', 'although', 'however']
-        # for word in words:
-        #   if word in text:
-        #     discard = True
-        # if discard:
-        #   continue
-        if int(label) == FLAGS.test_fold:
-          self.test.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
-        else:
+        if FLAGS.five_fold_mode:  
+          if int(label) == FLAGS.test_fold:
+            self.test.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+          else:
+            self.train.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+        if FLAGS.train_all:
           self.train.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
-    csv_name = 'false.csv'
-    csv_dir = data_dir + '/' + csv_name
-    # self.test = []
-    # with open(csv_dir) as csvfile:
-    #   readCSV = csv.reader(csvfile, delimiter = ',')
-    #   for row in readCSV:
-    #     l = row[1]
-    #     text = row[0].replace("<br />", " ")
-    #     if l == 'pos':
-    #       l = 'pos'
-    #     elif l == 'neg':
-    #       l = 'neg'
-    #     else:
-    #       continue
-    #     self.test.append(InputExample(
-    #         guid="unused_id", text_a=text, text_b=None, label=l))
+              guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
@@ -377,48 +357,23 @@ class ImdbRegressionClassProcessor(DataProcessor):
     self.examples = []
     self.train = []
     self.test = []
-    self.counts = {}
-    self.test_count = {}
-    self.train_count = {}
 
   def get_labels(self):
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    #print(self.counts)
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-      self.train = self.train[:20000]
-    else:
-      random.shuffle(self.examples)
-      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
     return self.train
 
   def get_dev_examples(self, data_dir):
-    #self._create_examples(data_dir)
-    #print(self.counts)
-    if self.test:
-      return self.test
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-      self.train = self.train[:20000]
-    else:
-      #random.shuffle(self.examples)
-      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
+    self._create_examples(data_dir)
     return self.test
 
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0","1","2","3","4", "aug"]:
+    for label in ["0","1","2","3","4"]:
       cur_dir = data_dir + '/' + label + '/'
-      print(label)
-      print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         print(filename)
@@ -431,8 +386,16 @@ class ImdbRegressionClassProcessor(DataProcessor):
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
-        examples.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
+        if FLAGS.five_fold_mode:  
+          if int(label) == FLAGS.test_fold:
+            self.test.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+          else:
+            self.train.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+        if FLAGS.train_all:
+          self.train.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
     self.examples = examples
     return examples
 
@@ -441,61 +404,45 @@ class ImdbThreeClassProcessor(DataProcessor):
     self.examples = []
     self.train = []
     self.test = []
-    self.train_counts = {}
-    self.test_count = {}
 
   def get_labels(self):
     return ["neg", "pos", "neu"]
 
   def get_train_examples(self, data_dir):
     self._create_examples(data_dir)
-    #print(self.counts)
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-    else:
-      random.shuffle(self.examples)
-      self.train = self.examples[:int(len(self.examples)) - int(len(self.examples)/10)]
     return self.train
 
   def get_dev_examples(self, data_dir):
     self._create_examples(data_dir)
-    #print(self.counts)
-    if FLAGS.five_fold_mode:
-      index = FLAGS.test_fold
-      self.test = self.examples[index * 1000 : (index+1) * 1000]
-      self.train = list(set(self.examples) - set(self.test))
-    else:
-      #random.shuffle(self.examples)
-      self.test = self.examples[int(len(self.examples)) - int(len(self.examples)/10):]
-    #print(self.test)
     return self.test
 
   def _create_examples(self, data_dir):
     examples = []
-    for label in ["0", "1", "2", "3", "4", "aug"]:
+    for label in ["0", "1", "2", "3", "4"]:
       cur_dir = data_dir + '/' + label + '/'
-      #print(cur_dir)
       for filename in tf.gfile.ListDirectory(cur_dir):
         if not filename.endswith("txt"): continue
         match = re.search(r'_\d', filename)
         l = float(match.group()[1:])
-        #print(l)
         if l >= 6:
-         # print("pos")
           l = "pos"
         elif l <= 4:
           l = "neg"
-         # print("neg")
         else:
           l = "neu"
         path = os.path.join(cur_dir, filename)
         with tf.gfile.Open(path) as f:
           text = f.read().strip().replace("<br />", " ")
-        #print('{} : {}'.format(text, l))
-        examples.append(InputExample(
-            guid="unused_id", text_a=text, text_b=None, label=l))
+        if FLAGS.five_fold_mode:  
+          if int(label) == FLAGS.test_fold:
+            self.test.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+          else:
+            self.train.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
+        if FLAGS.train_all:
+          self.train.append(InputExample(
+              guid="unused_id", text_a=text, text_b=None, label=l))
         self.examples = examples
     return examples
 
@@ -618,12 +565,9 @@ def file_based_convert_examples_to_features(
         [int(feature.is_real_example)])
 
     tf_example = tf.train.Example(features=tf.train.Features(feature=features))
-    #print("*" * 100)
-    #fout.write("{}\t{}\n".format(example.text_a, example.label))
-   #w print("{}\t{}\n".format(example.text_a, example.label))
     writer.write(tf_example.SerializeToString())
   writer.close()
-  #fout.close()
+
 
 
 def file_based_input_fn_builder(input_file, seq_length, is_training,
@@ -820,22 +764,22 @@ def get_model_fn(n_class):
           mode=mode, loss=total_loss, train_op=train_op)
 
     return train_spec
-
+  print('finish model_fn')
   return model_fn
 
 
 def main(_):
   tf.logging.set_verbosity(tf.logging.INFO)
-
+  print('826')
   #### Validate flags
   if FLAGS.save_steps is not None:
     FLAGS.iterations = min(FLAGS.iterations, FLAGS.save_steps)
-
+  print('830')
   if FLAGS.do_predict:
     predict_dir = FLAGS.predict_dir
     if not tf.gfile.Exists(predict_dir):
       tf.gfile.MakeDirs(predict_dir)
-
+  print('835')
   processors = {
       "mnli_matched": MnliMatchedProcessor,
       "mnli_mismatched": MnliMismatchedProcessor,
@@ -845,15 +789,15 @@ def main(_):
       "yelp5": Yelp5Processor,
       "imdb_reg": ImdbRegressionClassProcessor
   }
-
+  print('845')
   if not FLAGS.do_train and not FLAGS.do_eval and not FLAGS.do_predict:
     raise ValueError(
         "At least one of `do_train`, `do_eval, `do_predict` or "
         "`do_submit` must be True.")
-
+  print('850')
   if not tf.gfile.Exists(FLAGS.output_dir):
     tf.gfile.MakeDirs(FLAGS.output_dir)
-
+  print('853')
   task_name = FLAGS.task_name.lower()
 
   if task_name not in processors:
@@ -867,20 +811,21 @@ def main(_):
   def tokenize_fn(text):
     text = preprocess_text(text, lower=FLAGS.uncased)
     return encode_ids(sp, text)
-  
-  # tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
-  # tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu_address)
-  # is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
-  # run_config = tf.contrib.tpu.RunConfig(
-  #     cluster=tpu_cluster_resolver,
-  #     model_dir=FLAGS.model_dir,
-  #     save_checkpoints_steps=2000,
-  #     keep_checkpoint_max=10,
-  #     tpu_config=tf.contrib.tpu.TPUConfig(
-  #         iterations_per_loop=1000,
-  #         num_shards=8,
-  #         per_host_input_for_training=is_per_host))
-
+  print('start getting the tpu')
+  tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
+  tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu_address)
+  is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
+  run_config = tf.contrib.tpu.RunConfig(
+      cluster=tpu_cluster_resolver,
+      model_dir=FLAGS.model_dir,
+      save_checkpoints_steps=2000,
+      keep_checkpoint_max=10,
+      tpu_config=tf.contrib.tpu.TPUConfig(
+          iterations_per_loop=1000,
+          num_shards=8,
+          per_host_input_for_training=is_per_host))
+  print('finish getting the tpu')
+  print('Start getting model')
   model_fn = get_model_fn(len(label_list) if label_list is not None else None)
 
   spm_basename = os.path.basename(FLAGS.spiece_model_file)
