@@ -1,1 +1,0 @@
-Pointer gets lost many times.

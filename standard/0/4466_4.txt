@@ -1,1 +1,0 @@
-Third, the box says there's a fingerprint sensor, Windows setup says there's a fingerprint sensor, but I have yet to figure out where the fingerprint sensor is.

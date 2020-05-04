@@ -1,1 +1,0 @@
-I closed it and when opened got a "Pre-Boot System Performance Check" with a Critical Error Message and "Hard Drive - No NVMe Drive Detected on PCI tag 0200.

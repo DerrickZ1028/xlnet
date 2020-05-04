@@ -1,1 +1,0 @@
-The combination button and fingerprint reader seems to work well although it sits anonymously at the top right of the keyboard and does not light up like the other keys do when backlit.

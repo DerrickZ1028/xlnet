@@ -1,1 +1,0 @@
-It doesn't include all features and you are reminded of this on launch with a warning that no supported hardware is found.

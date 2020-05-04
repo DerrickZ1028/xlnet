@@ -1,1 +1,0 @@
-16 GB of RAM should be enough for anything you'll run aside from some video processing type tasks.

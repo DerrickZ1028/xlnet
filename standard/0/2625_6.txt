@@ -1,1 +1,0 @@
-The ram is not upgradeable but I upgraded the storage to an Intel 660P 1TB M.2 SSD and I noticed a significant bump in loading times and overall performance.

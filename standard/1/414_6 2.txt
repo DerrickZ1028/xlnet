@@ -1,1 +1,0 @@
-Dell release a series of BIOS updates which stopped the insane fan, increased battery life, and reduced the frequency of the freezing. Some freezing still continued

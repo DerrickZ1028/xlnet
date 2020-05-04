@@ -1,1 +1,0 @@
-Prior to the BIOS updates and more research, I just assumed the freezing was from the GNOME memory bug but it turns out that wasn't the primary reason as other OS's and Desktop Environments had the same issue.

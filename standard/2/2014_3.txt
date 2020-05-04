@@ -1,1 +1,0 @@
-I tried updating the drivers and BIOS - that didn't help. I tried a full reset of the system from the Windows 10 settings - that didn't help.

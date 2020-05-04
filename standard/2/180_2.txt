@@ -1,1 +1,0 @@
-4 ghz invisible, connecting to hotel wifi or any other 2.4 ghz connection did not work until I figured this out.

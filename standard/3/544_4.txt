@@ -1,1 +1,0 @@
-It does not have VGA/HDMI/etc for connecting to a screen so you will need to get a USB-C connector to HDMI/VGA to adequately present.

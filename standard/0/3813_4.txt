@@ -1,1 +1,0 @@
-The SSD is capable of write speeds comparable to NVMe drives, but read speed was half as fast.

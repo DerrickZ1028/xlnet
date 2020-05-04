@@ -1,1 +1,0 @@
-Transfer speed the MicroSD slot (Class 10A1) was rock solid at just over 80MB/s.

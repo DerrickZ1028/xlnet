@@ -1,1 +1,0 @@
-Had Dell perform a remote takeover of the computer and update the BIOS and change the settings and it still kept crashing.

@@ -1,1 +1,0 @@
-Also constantly deadlocked/completely froze when trying to fix, requiring it to be forced to shutdown by holding the power.

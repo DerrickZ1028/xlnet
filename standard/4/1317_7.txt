@@ -1,1 +1,0 @@
-The fingerprint scanner that lets you login without entering in a password seems somewhat flakey.

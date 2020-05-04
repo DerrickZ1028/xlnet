@@ -1,1 +1,0 @@
-Be advised that this is not a 2 in 1 so screen does not wrap around to create a tablet.Nor does it support touch screen or pen usage.

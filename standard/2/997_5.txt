@@ -1,1 +1,0 @@
-The second option is re-pasting your processor, and installing thermal pads on your heat sinks to draw the heat from the processor and GPU to the bottom case to dissipate the heat correctly.

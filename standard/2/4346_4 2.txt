@@ -1,1 +1,0 @@
-However, it tends to heat up a lot when running large programs, i really thought that with a i7 processor and 16gb of ram everything would run smoothly, but everything else is good.

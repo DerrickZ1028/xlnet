@@ -1,1 +1,0 @@
-The only complication was having to install the WiFi drivers manually.

@@ -1,1 +1,0 @@
-Booting up from initial shutdown and logging in can take literally 10 seconds and I am very happy.

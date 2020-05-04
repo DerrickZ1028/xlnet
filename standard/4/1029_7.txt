@@ -1,1 +1,0 @@
-THERMAL The laptop stays pretty cool, even under fairly heavy loads.

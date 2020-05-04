@@ -1,1 +1,0 @@
-One thread suggested to use Fedora to help with some battery optimizations but that isn't my preferred Linux based distro.

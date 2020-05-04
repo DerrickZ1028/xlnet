@@ -1,1 +1,0 @@
-I ran it through PCMark 10 and the fan actually managed to stay quiet for most of the test as it scored a 4041 score.

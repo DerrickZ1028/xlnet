@@ -1,1 +1,0 @@
-The face recognition unlocking works, but I don't find it fast enough and it keeps on searching for my face when not in use.

@@ -1,1 +1,0 @@
-Youll need to patch the kernel and you can find simple instructions in the Dell forums. As of May 2018 the 18.04 kernel is expected to include the fix for the camera shortly.

@@ -1,1 +1,0 @@
-Eventually I found that when I installed Ubuntu 18.04, I only had 1 GB swap space.

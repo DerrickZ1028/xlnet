@@ -1,1 +1,0 @@
-The system does include a Killer Gigabit Ethernet adapter but with an internet connection of over 1Gbps and overall latency of less than 13ms it is impossible see any perceivable difference.

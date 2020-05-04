@@ -1,1 +1,0 @@
-Dell includes a USB Type C to Type A adapter for those perihipherals that are not USB-C.

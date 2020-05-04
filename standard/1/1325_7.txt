@@ -1,1 +1,0 @@
-This is how long you might expect the battery to last doing intensive graphics calculations, as you would with a videogame.

@@ -1,1 +1,0 @@
-Downloaded the USB OS Support Assist / Recovery tool from Dell official website and it installs W10 Home, not Pro.

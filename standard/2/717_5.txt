@@ -1,1 +1,0 @@
-I have a rtx 2070 laptop and I'd be reluctant to run a 4k display with that gpu, let alone integrated graphics.

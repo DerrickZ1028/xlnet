@@ -1,1 +1,0 @@
-For example coming from a laptop with a larger screen and then getting a smaller screen will not produce positive results.

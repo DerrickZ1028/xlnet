@@ -1,1 +1,0 @@
-Thermal: the intel i7 processor on this machine is a beast and it produces a lot of heat.

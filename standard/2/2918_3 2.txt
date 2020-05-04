@@ -1,1 +1,0 @@
-However, when I put it in normal mode it shut down in less than 5 minutes.

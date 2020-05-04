@@ -1,1 +1,0 @@
-The recommendation I seen all over as a rule of thumb was to have the swap size equal to the RAM or double and since I had the 512 SSD with plenty of space, I just went double.

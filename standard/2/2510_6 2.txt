@@ -1,1 +1,0 @@
-AMD video drivers are a little lacking but they get the job done.

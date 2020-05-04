@@ -1,1 +1,0 @@
-Writing (SSD to MicroSD) was about 45MB/s.

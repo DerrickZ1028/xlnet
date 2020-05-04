@@ -1,1 +1,0 @@
-Sometimes under sone load, other times when it'd under near 0 load.

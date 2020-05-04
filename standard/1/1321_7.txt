@@ -1,1 +1,0 @@
-budget laptop overall + 242% cpu + 192% gpu + 587%vs.

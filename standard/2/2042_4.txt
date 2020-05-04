@@ -1,1 +1,0 @@
-Basically, unless you are in tablet mode, all sound is going to hit a surface before it reaches you.

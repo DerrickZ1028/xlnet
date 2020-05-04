@@ -1,1 +1,0 @@
-So I ended up buying the 64 watt power supply from dell (which I think should be the standard size)One item that seemed pretty cool at first is Dell's SupportAssistant, but it has been really buggy for me especially for the intel drivers they seem to fail install constantly.I end up going to Dell's website to update the drivers.

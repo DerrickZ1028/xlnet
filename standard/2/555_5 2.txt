@@ -1,1 +1,0 @@
-If it took 30 minutes to encode on the XPS 13 it would take under 10 with my desktop a lot of this had to do with GPU acceleration, and more ram, bigger processor, etc.

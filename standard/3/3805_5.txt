@@ -1,1 +1,0 @@
-The display had a blue/green hue with the default 34EB color profile and required color calibration.

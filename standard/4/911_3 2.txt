@@ -1,1 +1,0 @@
-Now, there are two downsides I found to this laptop which are the thermal throttling issues which you can just google a video to figure out how to undervolt the cpu (I've never had a thermal problem since, after under volting my cpu) and the keyboard.

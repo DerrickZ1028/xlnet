@@ -1,1 +1,0 @@
-Changing brightness or turn on/off (using keys or Dell Bios), I did get to work.

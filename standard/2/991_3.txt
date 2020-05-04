@@ -1,1 +1,0 @@
-When the i7 goes up to nearly 4GHz (the turbo boost on it) it usually throttles (clocks down) because the temps of the processor will go up to 90 or so Celcius at least on my machine, (max temp being 100 C).

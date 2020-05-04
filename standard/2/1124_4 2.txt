@@ -1,1 +1,0 @@
-The only problem with doing that is now the proc will have a shorter lifetime and power-battery life is less optimized.

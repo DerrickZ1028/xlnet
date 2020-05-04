@@ -1,1 +1,0 @@
-Added a J5create USB type C multi adaptor (see separate review) and haven't had a problem with useable ports.

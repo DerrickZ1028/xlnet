@@ -1,1 +1,0 @@
-You are supposed to be able to change backlight colors - W/R/B/G  but could not get it to work.

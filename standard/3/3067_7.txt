@@ -1,1 +1,0 @@
-It runs smoothly with little performance issue.

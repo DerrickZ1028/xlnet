@@ -1,1 +1,0 @@
-Otherwise,  in best case scenario it would throttle or even shut down in worse cases.

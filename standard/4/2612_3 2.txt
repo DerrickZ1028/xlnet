@@ -1,1 +1,0 @@
-These freezes used to last from about half a second to many seconds, but now, it last forever.

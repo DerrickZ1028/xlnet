@@ -1,1 +1,0 @@
-The typing keys are reactive and rebound quite well with no sticking of the keys.

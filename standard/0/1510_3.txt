@@ -1,1 +1,0 @@
-It also never wakes up from sleep, keyboard light turns on when pressing but nothing else happens.

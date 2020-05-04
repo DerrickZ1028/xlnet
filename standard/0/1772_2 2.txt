@@ -1,1 +1,0 @@
-Eventually, I could not restart it and it gave light signals indicating a problem with the CPU.

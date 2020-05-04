@@ -1,1 +1,0 @@
-It can handle light games like league of legends and CSGO at 60 fps.

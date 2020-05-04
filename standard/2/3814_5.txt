@@ -1,1 +1,0 @@
-The display had a notable blue/green cast and required color calibration to render 97% of the RGB color gamut.

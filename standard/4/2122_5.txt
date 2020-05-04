@@ -1,1 +1,0 @@
-This included running mildly intense applications (Virtual Machines, Web browsers, one note, word, etc).

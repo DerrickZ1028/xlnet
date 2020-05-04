@@ -1,1 +1,0 @@
-until it crashed three weeks later with the message " no bootable device was found".

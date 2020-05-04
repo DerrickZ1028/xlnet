@@ -1,1 +1,0 @@
-I did try to use one program at a time but it would still crash.

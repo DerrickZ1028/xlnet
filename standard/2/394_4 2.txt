@@ -1,1 +1,0 @@
-Power Management: For some reason, despite using the power cord from Dell, upon restarting the computer I would get a warning saying that the power supply I was using was not the correct Dell power supply.

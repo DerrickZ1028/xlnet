@@ -1,1 +1,0 @@
-Overall *Novabench* score 2466Cpu 1312Ram 267Gpu 687Disk 200Cpu 89th percentileGpu 79th percentilevs.

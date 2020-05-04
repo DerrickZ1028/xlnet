@@ -1,1 +1,0 @@
-Could be a little faster on boot up, but I'm sure Dell didn't splurge on high end MB or RAM and it's still much faster than something with a mechanical HDD.

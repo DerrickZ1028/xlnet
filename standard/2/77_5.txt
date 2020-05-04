@@ -1,1 +1,0 @@
-Coudn't make the digital sensor work, but doing fine with windows hello.

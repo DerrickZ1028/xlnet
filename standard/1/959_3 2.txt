@@ -1,1 +1,0 @@
-Sometimes after boot up wifi does not work - wifi device is not found.

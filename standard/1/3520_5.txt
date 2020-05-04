@@ -1,1 +1,0 @@
-The reason it doesn't have a mark ON the button is because it's also the fingerprint reader, so I'm guessing it needs to be blank.

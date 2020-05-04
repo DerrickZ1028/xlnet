@@ -1,1 +1,0 @@
-" The speaker position is very weird and most of the time at the high volume the sound was breaking.

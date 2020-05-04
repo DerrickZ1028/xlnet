@@ -1,1 +1,0 @@
-I have disabled C-State option in BIOS to see if that solves the issue.

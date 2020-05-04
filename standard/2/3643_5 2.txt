@@ -1,1 +1,0 @@
-I guess it does it's job fine but there is very little feedback to know what, when, or how it is updating.

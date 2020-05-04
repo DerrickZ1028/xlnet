@@ -1,1 +1,0 @@
-The temperature reaches high during idle which makes the fan always run killing the battery in the process.

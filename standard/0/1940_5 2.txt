@@ -1,1 +1,0 @@
-More cores + memory should have been a significant time savings, but instead all of the time saved and then some has been spent with Dell support or trying to troubleshoot machines myself.

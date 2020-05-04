@@ -1,1 +1,0 @@
-So instead or becoming reliant on it I have been updating the drivers from the website and it appears as well that the support assistant does not install every updated system driver, but just critical ones it appears.Because when the support assistant said there were no updates. I found 6 driver updates on the Dell website I was behind on.

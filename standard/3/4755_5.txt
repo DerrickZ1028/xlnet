@@ -1,1 +1,0 @@
-Internally is a PCI-NVME SSD and a traditional hard driver for larger storage.

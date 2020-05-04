@@ -1,1 +1,0 @@
-This button also serves as a fingerprint/security button.

@@ -1,1 +1,0 @@
-It takes a while if you run all of the options and seems to sometimes fight with Intel or Windows updates.

@@ -1,1 +1,0 @@
-It did take a few moments to figure out when Windows was asking to setup that the scanner was in fact on the unlabeled power button key.

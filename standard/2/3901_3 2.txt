@@ -1,1 +1,0 @@
-There is NO Ethernet port (despite the BB description saying there is)

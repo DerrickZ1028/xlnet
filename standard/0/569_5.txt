@@ -1,1 +1,0 @@
-The webcam can take 1280x720 photos and 720p @ 30fps video, which is just average, nothing too exciting.

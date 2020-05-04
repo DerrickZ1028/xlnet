@@ -1,1 +1,0 @@
-Turning on and booting up takes less than 10 seconds.

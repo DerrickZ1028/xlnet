@@ -1,1 +1,0 @@
-I tried hooking the HDMI out to a 4K TV, but it struggled to output steady video with the laptop throttling.

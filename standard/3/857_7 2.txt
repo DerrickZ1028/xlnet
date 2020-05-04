@@ -1,1 +1,0 @@
-The drive inside boots the system in less than 10 seconds.

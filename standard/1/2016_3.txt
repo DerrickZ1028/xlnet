@@ -1,1 +1,0 @@
-I tried rolling back to an older version on BIOS - and it was unsuccessful.

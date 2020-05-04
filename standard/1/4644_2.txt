@@ -1,1 +1,0 @@
-Does not allow older software to be loaded into it which is a big problem and expensive to overcome.
